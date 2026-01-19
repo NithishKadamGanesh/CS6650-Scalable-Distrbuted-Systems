@@ -32,8 +32,8 @@ func main() {
 	router.GET("/albums/:id", getAlbumByID) // Read one album by ID
 	router.POST("/albums", postAlbums)      // Create a new album
 
-	// Start server on port 8080
-	router.Run("localhost:8080")
+	router.Run("0.0.0.0:8080")
+
 }
 
 /*
