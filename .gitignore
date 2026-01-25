@@ -1,0 +1,18 @@
+# Terraform
+.terraform/
+terraform.tfstate
+terraform.tfstate.backup
+.terraform.lock.hcl
+
+# Docker / binaries
+*.exe
+*.zip
+*.tar
+
+# SSH keys
+*.pem
+*.ppk
+
+# OS / editor junk
+.DS_Store
+.vscode/

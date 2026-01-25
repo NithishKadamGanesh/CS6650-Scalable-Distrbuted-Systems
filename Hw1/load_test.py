@@ -61,7 +61,7 @@ def plot_results(times_ms):
     plt.show()
 
 if __name__ == "__main__":
-    EC2_URL = "http://54.242.197.105:8080/albums"  # your public IP
+    EC2_URL = "http://98.93.41.18:8080/albums"  # your public IP
     times, errors = load_test(EC2_URL, duration_seconds=30)
     print_stats(times, errors)
     plot_results(times)
