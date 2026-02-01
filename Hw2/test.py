@@ -2,8 +2,8 @@ import requests
 
 # Change to Correct IP addresses for both instances
 # Remember to add the inbound rules for these instances
-EC2_URL1 = "http://ec2-44-204-137-130.compute-1.amazonaws.com:8080/albums"
-EC2_URL2 = "http://ec2-100-31-119-104.compute-1.amazonaws.com:8080/albums"
+EC2_URL1 = "http://ec2-44-198-61-25.compute-1.amazonaws.com:8080/albums"
+EC2_URL2 = "http://ec2-44-220-81-218.compute-1.amazonaws.com:8080/albums"
 
 
 POST_DATA = {
