@@ -141,3 +141,16 @@ The JSON correctly reflects aggregated word counts across all chunks, validating
 * ECS Fargate made scaling trivial by running multiple mappers independently.
 * S3 acted as a reliable shared storage medium for coordination.
 * Manual orchestration highlighted the complexity of scheduling and fault handling in distributed systems.
+
+
+The reducer correctly aggregates mapper outputs; however, comparison with a centralized baseline revealed discrepancies due to differences in tokenization and chunk-boundary effects. Words containing apostrophes such as 'tis and o'er were split differently by the distributed mappers, leading to variations in counts. These inconsistencies highlight an important distributed systems lesson: preprocessing must be globally consistent to guarantee identical results.
+
+We compared a single-machine word count implementation with our distributed MapReduce-style implementation using ECS tasks and S3.
+
+For hamlet.txt, the local version completed in 10.14 ms, while the distributed version took 1045 ms, a slowdown of approximately 103×.
+
+For a larger input (big_10x.txt), the local version took 109.32 ms, while the distributed version took 1416.71 ms, reducing the slowdown to approximately 13×.
+
+This demonstrates that for small to moderate datasets, distributed execution is dominated by orchestration, network, and storage overhead. However, as input size grows, the relative overhead decreases, illustrating the scalability motivation behind MapReduce.
+
+![](./images/performance_comparison.png)
