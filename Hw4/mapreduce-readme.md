@@ -153,4 +153,5 @@ For a larger input (big_10x.txt), the local version took 109.32 ms, while the di
 
 This demonstrates that for small to moderate datasets, distributed execution is dominated by orchestration, network, and storage overhead. However, as input size grows, the relative overhead decreases, illustrating the scalability motivation behind MapReduce.
 
+![](./images/comparison2.png)
 ![](./images/performance_comparison.png)
