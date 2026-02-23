@@ -3,11 +3,23 @@
 terraform.tfstate
 terraform.tfstate.backup
 .terraform.lock.hcl
+**.tfvars
+**.tfstate
+**.tfstate.*
+**/.terraform/
 
 # Docker / binaries
 *.exe
 *.zip
 *.tar
+
+
+# Logs
+*.log
+
+# Binaries
+*.exe
+*.out
 
 # SSH keys
 *.pem
