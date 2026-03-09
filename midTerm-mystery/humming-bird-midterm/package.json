@@ -1,0 +1,55 @@
+{
+  "name": "hummingbird",
+  "version": "0.0.1",
+  "description": "REST API providing file upload and media management.",
+  "engines": {
+    "node": ">=22.13.0",
+    "npm": ">=10.9.2"
+  },
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+    "start": "node --require ./_instrumentation.js server.js",
+    "start:debug": "node --inspect-wait=127.0.0.1:9229 --trace-warnings --watch-path=./actions --watch-path=./clients --watch-path=./controllers --watch-path=./core --watch-path=./routes server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wederribas/cs7990-master-thesis.git"
+  },
+  "keywords": [
+    "cs7990"
+  ],
+  "author": "Weder Ribas <me@wederribas.com>",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/wederribas/cs7990-master-thesis/issues"
+  },
+  "homepage": "https://github.com/wederribas/cs7990-master-thesis#readme",
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.738.0",
+    "@aws-sdk/client-s3": "^3.738.0",
+    "@aws-sdk/client-sns": "^3.744.0",
+    "@aws-sdk/client-sqs": "^3.744.0",
+    "@aws-sdk/lib-storage": "^3.738.0",
+    "@aws-sdk/s3-request-presigner": "^3.740.0",
+    "@opentelemetry/api": "^1.9.0",
+    "@opentelemetry/auto-instrumentations-node": "^0.56.1",
+    "@opentelemetry/exporter-metrics-otlp-proto": "^0.57.2",
+    "@opentelemetry/exporter-trace-otlp-proto": "^0.57.2",
+    "@opentelemetry/resource-detector-aws": "^1.12.0",
+    "@opentelemetry/sdk-metrics": "^1.30.1",
+    "@opentelemetry/sdk-node": "^0.57.2",
+    "@opentelemetry/sdk-trace-node": "^1.30.1",
+    "@opentelemetry/semantic-conventions": "^1.30.0",
+    "@opentelemetry/winston-transport": "^0.10.1",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "formidable": "^3.5.2",
+    "winston": "^3.17.0"
+  },
+  "devDependencies": {
+    "eslint": "^9.21.0",
+    "prettier": "^3.5.3"
+  }
+}
