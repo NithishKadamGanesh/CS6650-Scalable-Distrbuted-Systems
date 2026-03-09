@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title> Galactic Pizza — Live Dashboard</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: #0f172a; color: #e2e8f0; min-height: 100vh; padding: 16px; }
+  .container { max-width: 960px; margin: 0 auto; }
+  h1 { font-size: 22px; text-align: center; background: linear-gradient(90deg, #f97316, #ec4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 2px; }
+  .subtitle { text-align: center; color: #94a3b8; font-size: 12px; margin-bottom: 6px; }
+  .conn-status { text-align: center; margin-bottom: 14px; font-size: 12px; }
+  .conn-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 5px; vertical-align: middle; }
+  .panel { background: #1e293b; border-radius: 10px; padding: 14px; margin-bottom: 12px; }
+  .controls { display: flex; gap: 10px; flex-wrap: wrap; align-items: flex-end; }
+  .control-group label { font-size: 11px; color: #94a3b8; display: block; margin-bottom: 3px; }
+  select, input[type=range] { background: #334155; color: #e2e8f0; border: 1px solid #475569; border-radius: 6px; padding: 6px 10px; font-size: 13px; }
+  .btn { border: none; border-radius: 6px; padding: 8px 16px; font-weight: 700; cursor: pointer; font-size: 13px; color: #fff; transition: opacity 0.2s; }
+  .btn:hover { opacity: 0.85; }
+  .btn:disabled { opacity: 0.4; cursor: default; }
+  .btn-start { background: #22c55e; } .btn-pause { background: #ef4444; }
+  .btn-crash { background: #f97316; } .btn-recover { background: #3b82f6; } .btn-reset { background: #475569; }
+  .btn-group { display: flex; gap: 6px; margin-left: auto; align-items: flex-end; }
+  .arch { display: flex; align-items: center; justify-content: center; gap: 12px; padding: 8px 0; flex-wrap: wrap; }
+  .arch-box { border-radius: 10px; padding: 10px 16px; text-align: center; font-weight: 700; font-size: 13px; color: #fff; }
+  .svc-box { border-radius: 10px; padding: 10px 14px; min-width: 120px; text-align: center; position: relative; border: 2px solid; }
+  .svc-name { font-weight: 700; font-size: 13px; color: #1e293b; }
+  .svc-detail { font-size: 11px; color: #64748b; }
+  .svc-alert { position: absolute; top: -8px; right: -8px; background: #ef4444; color: #fff; border-radius: 50%; width: 20px; height: 20px; font-size: 11px; display: flex; align-items: center; justify-content: center; font-weight: 700; }
+  .arrow { color: #64748b; font-size: 20px; }
+  .svc-col { display: flex; flex-direction: column; gap: 8px; }
+  .metrics-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 12px; }
+  .metric-card { background: #1e293b; border-radius: 8px; padding: 12px; text-align: center; }
+  .metric-label { font-size: 11px; color: #64748b; margin-bottom: 4px; }
+  .metric-value { font-size: 20px; font-weight: 800; }
+  .extra-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 12px; }
+  .charts { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
+  .chart-label { font-size: 11px; color: #64748b; margin-bottom: 4px; }
+  .cb-badge { font-size: 12px; padding: 3px 10px; border-radius: 20px; font-weight: 700; color: #fff; display: inline-block; margin-top: 8px; }
+  .bh-slots { text-align: center; margin-top: 8px; }
+  .bh-slot { display: inline-block; width: 14px; height: 14px; border-radius: 3px; margin: 0 2px; border: 1px solid #475569; }
+  .demo-steps { display: flex; gap: 8px; flex-wrap: wrap; }
+  .demo-step { border-radius: 8px; padding: 8px 12px; font-size: 12px; flex: 1 1 auto; min-width: 150px; border-left: 3px solid; }
+  .pattern-cards { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
+  .pattern-card { background: #1e293b; border-radius: 10px; padding: 12px; border-top: 3px solid; transition: opacity 0.3s; }
+  .pattern-name { font-weight: 700; font-size: 13px; margin-bottom: 4px; }
+  .pattern-desc { font-size: 11px; color: #94a3b8; line-height: 1.4; }
+  .live-badge { background: #ef4444; color: #fff; font-size: 10px; padding: 2px 6px; border-radius: 4px; font-weight: 700; animation: pulse 1.5s infinite; display: inline-block; margin-left: 6px; }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
+</style>
+</head>
+<body>
+<div class="container" id="app"></div>
+<script>
+const API = new URLSearchParams(window.location.search).get("api") || "http://localhost:8080";
+const SERVICES = ["inventory", "payment", "kitchen"];
+const SVC_LABELS = { inventory: "Inventory", payment: "Payment", kitchen: "Kitchen" };
+const SVC_DELAY = { inventory: 30, payment: 60, kitchen: 40 };
+const PATTERNS = {
+  none: "No Protection", failfast: "Fail Fast", circuit: "Circuit Breaker",
+  bulkhead: "Bulkhead", retry: "Retry + Backoff", degraded: "Graceful Degradation",
+  all: "All Patterns Combined"
+};
+
+let state = { connected: false, mode: "none", running: false, rps: 10, crashTarget: "payment", metrics: null, history: [] };
+let trafficInterval = null, metricsInterval = null;
+
+async function apiCall(path, method="GET") {
+  try {
+    const r = await fetch(API+path, {method});
+    if(!r.ok) throw new Error(r.statusText);
+    state.connected=true; return await r.json();
+  } catch(e) { state.connected=false; return null; }
+}
+
+async function fetchMetrics() {
+  const d = await apiCall("/metrics");
+  if(d) {
+    state.metrics=d;
+    state.history.push({sr:d.success_rate_pct||0, lat:d.latency_mean_ms||0, p99:d.latency_p99_ms||0});
+    if(state.history.length>60) state.history.shift();
+  }
+  render();
+}
+
+function sendOrder() { fetch(API+"/order").catch(()=>{}); }
+async function setMode(m) { state.mode=m; await apiCall("/mode?mode="+m,"POST"); render(); }
+async function crashService() { await apiCall("/crash?service="+state.crashTarget,"POST"); await fetchMetrics(); }
+async function recoverService() { await apiCall("/recover?service="+state.crashTarget,"POST"); await fetchMetrics(); }
+async function resetAll() { stopTraffic(); state.history=[]; await apiCall("/reset","POST"); await fetchMetrics(); }
+
+function startTraffic() {
+  state.running=true;
+  trafficInterval=setInterval(()=>{ for(let i=0;i<Math.max(1,Math.floor(state.rps/10));i++) sendOrder(); },100);
+  metricsInterval=setInterval(fetchMetrics,500);
+  render();
+}
+function stopTraffic() { state.running=false; clearInterval(trafficInterval); clearInterval(metricsInterval); render(); }
+function toggleRun() { state.running ? stopTraffic() : startTraffic(); }
+function updateRPS(v) {
+  state.rps=v;
+  if(state.running){ clearInterval(trafficInterval); trafficInterval=setInterval(()=>{ for(let i=0;i<Math.max(1,Math.floor(state.rps/10));i++) sendOrder(); },100); }
+  render();
+}
+
+function sparkline(data,color,w=380,h=50) {
+  if(data.length<2) return `<svg width="${w}" height="${h}"><text x="${w/2}" y="${h/2+4}" text-anchor="middle" fill="#475569" font-size="11">Waiting for data...</text></svg>`;
+  const max=Math.max(...data,1),min=Math.min(...data,0),range=max-min||1;
+  const pts=data.map((v,i)=>`${(i/(data.length-1))*w},${h-((v-min)/range)*h}`).join(' ');
+  return `<svg width="${w}" height="${h}" style="display:block"><polyline fill="none" stroke="${color}" stroke-width="2" points="${pts}"/></svg>`;
+}
+
+function svcBox(name) {
+  const m=state.metrics;
+  const healthy=m?(m.services&&m.services[name]!==false):true;
+  const isTarget=name===state.crashTarget;
+  const bg=!healthy?'#fee2e2':isTarget?'#fef3c7':'#d1fae5';
+  const border=!healthy?'#ef4444':isTarget?'#f59e0b':'#10b981';
+  return `<div class="svc-box" style="background:${bg};border-color:${border}">
+    <div style="font-size:22px">${!healthy?'💀':'✅'}</div>
+    <div class="svc-name">${SVC_LABELS[name]}</div>
+    <div class="svc-detail">${healthy?'~'+SVC_DELAY[name]+'ms':'DOWN'}</div>
+    ${!healthy?'<div class="svc-alert">!</div>':''}</div>`;
+}
+
+function render() {
+  const m=state.metrics||{};
+  const sr=(m.success_rate_pct||0).toFixed(1);
+  const avgLat=Math.round(m.latency_mean_ms||0);
+  const p95=Math.round(m.latency_p95_ms||0);
+  const p99=Math.round(m.latency_p99_ms||0);
+  const total=m.total_requests||0, failures=m.failures||0;
+  const timeouts=m.timeouts||0, cTrips=m.circuit_trips||0, bRejects=m.bulkhead_rejects||0;
+  const retries=m.retries||0, degradedOK=m.degraded_ok||0;
+  // Track degraded rate: are new orders still degrading?
+  const prevDegraded = window._lastDegraded || 0;
+  const degradedActive = degradedOK > prevDegraded;
+  window._lastDegraded = degradedOK;
+  const srC=+sr>90?'#22c55e':+sr>50?'#f59e0b':'#ef4444';
+  const latC=avgLat<200?'#22c55e':avgLat<1000?'#f59e0b':'#ef4444';
+  const p99C=p99<500?'#22c55e':'#ef4444';
+  const showCB=state.mode==='circuit'||state.mode==='all';
+  const showBH=state.mode==='bulkhead'||state.mode==='all';
+  const showRetry=state.mode==='retry'||state.mode==='all';
+  const showDegraded=state.mode==='degraded'||state.mode==='all';
+  const cbS=(m.circuit_breakers||{})[state.crashTarget]||'CLOSED';
+  const cbBg=cbS==='CLOSED'?'#166534':cbS==='OPEN'?'#991b1b':'#92400e';
+  const bh=(m.bulkheads&&m.bulkheads[state.crashTarget])||{used:0,max:5};
+  const labels={all:'FF+CB+BH+RT+DG',failfast:'Fail Fast',circuit:'Circuit Breaker',bulkhead:'Bulkhead',retry:'Retry+Backoff',degraded:'Degraded'};
+  const mL=labels[state.mode]||'';
+  const isAWS=!API.includes('localhost');
+  const connDot=state.connected?'#22c55e':'#ef4444';
+  const connTxt=state.connected?(isAWS?'Connected to AWS ALB':'Connected to Go server :8080'):(isAWS?'Cannot reach ALB':'Cannot reach server — run: go run main.go');
+  const opts=(o,s)=>Object.entries(o).map(([k,v])=>`<option value="${k}" ${k===s?'selected':''}>${v}</option>`).join('');
+  const sOpts=SERVICES.map(s=>`<option value="${s}" ${s===state.crashTarget?'selected':''}>${SVC_LABELS[s]}</option>`).join('');
+
+  const steps=[
+    {n:'1',t:"'No Protection' → Start → Crash → cascading failure",a:state.mode==='none'},
+    {n:'2',t:"'Fail Fast' → Crash → latency caps at 500ms",a:state.mode==='failfast'},
+    {n:'3',t:"'Circuit Breaker' → Crash → OPEN → Recover → CLOSED",a:state.mode==='circuit'},
+    {n:'4',t:"'Bulkhead' → Crash → slot isolation",a:state.mode==='bulkhead'},
+    {n:'5',t:"'Retry+Backoff' → Crash → watch retries with jitter",a:state.mode==='retry'},
+    {n:'6',t:"'Degradation' → Crash → orders still accepted!",a:state.mode==='degraded'},
+    {n:'7',t:"'All Combined' → Crash → full resilience!",a:state.mode==='all'}
+  ];
+  const pats=[
+    {i:'⚡',n:'Fail Fast',d:'500ms timeout. Fail immediately, free resources.',c:'#f59e0b',k:'failfast'},
+    {i:'🔌',n:'Circuit Breaker',d:'5 failures → OPEN. Cooldown → HALF-OPEN probe.',c:'#ef4444',k:'circuit'},
+    {i:'🚧',n:'Bulkhead',d:'Max 5 concurrent per service. Isolates blast radius.',c:'#a855f7',k:'bulkhead'},
+    {i:'🔁',n:'Retry+Backoff',d:'3 attempts with exponential backoff + jitter. No thundering herd.',c:'#06b6d4',k:'retry'},
+    {i:'🛟',n:'Degradation',d:'Accept orders with failed services. Retry async later.',c:'#10b981',k:'degraded'}
+  ];
+
+  // Extra metrics row — dynamically show what's relevant
+  let extraCards = `
+    <div class="metric-card"><div class="metric-label">Total / Failures</div><div class="metric-value" style="color:#94a3b8;font-size:16px">${total} / ${failures}</div></div>
+    <div class="metric-card"><div class="metric-label">Timeouts</div><div class="metric-value" style="color:#eab308">${timeouts}</div></div>`;
+  if(showCB) extraCards+=`<div class="metric-card"><div class="metric-label">Circuit Trips</div><div class="metric-value" style="color:#f97316">${cTrips}</div></div>`;
+  if(showBH) extraCards+=`<div class="metric-card"><div class="metric-label">Bulkhead Rejects</div><div class="metric-value" style="color:#a855f7">${bRejects}</div></div>`;
+  if(showRetry) extraCards+=`<div class="metric-card"><div class="metric-label">Retries</div><div class="metric-value" style="color:#06b6d4">${retries}</div></div>`;
+  if(showDegraded) extraCards+=`<div class="metric-card"><div class="metric-label">Degraded OK ${degradedActive?'⚠️ active':'✅ stopped'}</div><div class="metric-value" style="color:${degradedActive?'#eab308':'#22c55e'}">${degradedOK}</div></div>`;
+
+  document.getElementById('app').innerHTML=`
+    <h1>🍕 Galactic Pizza Ordering — Live Dashboard</h1>
+    <p class="subtitle">CS 6650 Step III: Resilience Patterns Demo (5 Patterns) ${state.running?'<span class="live-badge">LIVE</span>':''}</p>
+    <div class="conn-status"><span class="conn-dot" style="background:${connDot}"></span>${connTxt}</div>
+
+    <div class="panel controls">
+      <div class="control-group"><label>Protection Pattern</label><select onchange="setMode(this.value)">${opts(PATTERNS,state.mode)}</select></div>
+      <div class="control-group"><label>Crash Target</label><select onchange="state.crashTarget=this.value;render()">${sOpts}</select></div>
+      <div class="control-group"><label>RPS: ${state.rps}</label><input type="range" min="5" max="50" value="${state.rps}" oninput="updateRPS(+this.value)" style="width:100px"></div>
+      <div class="btn-group">
+        <button class="btn ${state.running?'btn-pause':'btn-start'}" onclick="toggleRun()" ${!state.connected?'disabled':''}>${state.running?'⏸ Pause':'▶ Start'}</button>
+        <button class="btn btn-crash" onclick="crashService()" ${!state.connected?'disabled':''}>💥 Crash!</button>
+        <button class="btn btn-recover" onclick="recoverService()" ${!state.connected?'disabled':''}>🔧 Recover</button>
+        <button class="btn btn-reset" onclick="resetAll()">↺ Reset</button>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div style="font-size:12px;color:#94a3b8;margin-bottom:10px;font-weight:600">Service Architecture${isAWS?' — AWS ECS Fargate + ALB + Cloud Map':' — Local Go Services'}</div>
+      <div class="arch">
+        <div class="arch-box" style="background:#3b82f6"> Dashboard<br><span style="font-size:11px;font-weight:400">${state.rps} req/s</span></div>
+        <div class="arrow">→</div>
+        ${isAWS?'<div class="arch-box" style="background:#059669"> ALB</div><div class="arrow">→</div>':''}
+        <div class="arch-box" style="background:#7c3aed"> Order API${mL?'<div style="font-size:10px;font-weight:400;margin-top:2px">'+mL+'</div>':''}</div>
+        <div class="arrow">→</div>
+        <div class="svc-col">${SERVICES.map(svcBox).join('')}</div>
+      </div>
+      ${showCB?`<div style="text-align:center;margin-top:10px"><span class="cb-badge" style="background:${cbBg}">Circuit [${SVC_LABELS[state.crashTarget]}]: ${cbS}</span></div>`:''}
+      ${showBH?`<div class="bh-slots"><span style="font-size:12px;color:#94a3b8">Bulkhead [${SVC_LABELS[state.crashTarget]}]: </span>${Array.from({length:bh.max||5}).map((_,i)=>`<span class="bh-slot" style="background:${i<(bh.used||0)?'#f97316':'#334155'}"></span>`).join('')}</div>`:''}
+      ${showDegraded?`<div style="text-align:center;margin-top:8px"><span style="font-size:12px;padding:3px 10px;border-radius:20px;font-weight:700;color:#fff;background:${degradedActive?'#059669':'#334155'}">Degraded Orders: ${degradedOK} ${degradedActive?'(active ⚠️)':'(stopped ✅)'}</span></div>`:''}
+    </div>
+
+    <div class="metrics-grid">
+      <div class="metric-card"><div class="metric-label">Success Rate</div><div class="metric-value" style="color:${srC}">${sr}%</div></div>
+      <div class="metric-card"><div class="metric-label">Avg Latency</div><div class="metric-value" style="color:${latC}">${avgLat}ms</div></div>
+      <div class="metric-card"><div class="metric-label">P95 Latency</div><div class="metric-value" style="color:${p99C}">${p95}ms</div></div>
+      <div class="metric-card"><div class="metric-label">P99 Latency</div><div class="metric-value" style="color:${p99C}">${p99}ms</div></div>
+    </div>
+
+    <div class="extra-grid">${extraCards}</div>
+
+    <div class="charts">
+      <div class="panel"><div class="chart-label">Success Rate Over Time (%)</div>${sparkline(state.history.map(h=>h.sr),'#22c55e')}</div>
+      <div class="panel"><div class="chart-label">P99 Latency Over Time (ms)</div>${sparkline(state.history.map(h=>h.p99),'#f97316')}</div>
+    </div>
+
+    <div class="panel">
+      <div style="font-size:13px;font-weight:700;margin-bottom:8px"> Demo Script (7 Steps)</div>
+      <div class="demo-steps">${steps.map(s=>`<div class="demo-step" style="background:${s.a?'#7c3aed':'#334155'};border-left-color:${s.a?'#a78bfa':'#475569'}"><span style="font-weight:700;color:${s.a?'#e9d5ff':'#94a3b8'}">Step ${s.n}: </span><span style="color:${s.a?'#f1f5f9':'#cbd5e1'}">${s.t}</span></div>`).join('')}</div>
+    </div>
+
+    <div class="pattern-cards">${pats.map(p=>`<div class="pattern-card" style="border-top-color:${p.c};opacity:${state.mode===p.k||state.mode==='all'||state.mode==='none'?1:0.5}"><div style="font-size:16px">${p.i}</div><div class="pattern-name" style="color:${p.c}">${p.n}</div><div class="pattern-desc">${p.d}</div></div>`).join('')}</div>
+  `;
+}
+
+(async function(){
+  render();
+  const d=await apiCall("/metrics");
+  if(d){state.metrics=d;state.mode=d.mode||"none";}
+  render();
+  setInterval(async()=>{if(!state.running) await fetchMetrics();},2000);
+})();
+</script>
+</body>
+</html>

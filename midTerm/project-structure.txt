@@ -1,0 +1,43 @@
+galactic-pizza/
+│
+├── services/
+│   ├── order-api/          # Main API — routes orders through downstream services
+│   │   ├── main.go
+│   │   ├── Dockerfile
+│   │   └── go.mod
+│   │
+│   ├── inventory/          # Downstream: checks stock
+│   │   ├── main.go
+│   │   ├── Dockerfile
+│   │   └── go.mod
+│   │
+│   ├── payment/            # Downstream: processes payment
+│   │   ├── main.go
+│   │   ├── Dockerfile
+│   │   └── go.mod
+│   │
+│   └── kitchen/            # Downstream: prepares order
+│       ├── main.go
+│       ├── Dockerfile
+│       └── go.mod
+│
+├── terraform/
+│   ├── main.tf             # Provider, VPC, subnets
+│   ├── ecr.tf              # ECR repositories (one per service)
+│   ├── ecs.tf              # ECS cluster + Fargate services
+│   ├── alb.tf              # Public ALB + target groups
+│   ├── service-discovery.tf # AWS Cloud Map for inter-service DNS
+│   ├── autoscaling.tf      # Auto-scaling policies per service
+│   ├── security.tf         # Security groups
+│   ├── variables.tf
+│   ├── outputs.tf
+│   └── terraform.tfvars
+│
+├── scripts/
+│   ├── build-push.sh       # Build Docker images + push to ECR
+│   ├── crash-service.sh    # Scale a service to 0 (simulate crash)
+│   └── recover-service.sh  # Scale back up (simulate recovery)
+│
+├── dashboard.html           # Live dashboard → points to ALB DNS
+├── locustfile.py           # Load test → points to ALB DNS
+└── README.md
