@@ -1,0 +1,33 @@
+﻿2026/04/06 01:00:48 Starting FOLLOWER node follower1 on :8081 (leader=localhost:8080)
+2026/04/06 01:00:48 Starting LEADER node leader on :8080 (W=5, R=1, followers=[localhost:8081 localhost:8082 localhost:8083 localhost:8084])
+2026/04/06 01:00:48 Starting FOLLOWER node follower2 on :8082 (leader=localhost:8080)
+2026/04/06 01:00:48 Starting FOLLOWER node follower3 on :8083 (leader=localhost:8080)
+2026/04/06 01:00:48 Starting FOLLOWER node follower4 on :8084 (leader=localhost:8080)
+2026/04/06 01:00:48 Starting LEADERLESS node node2 on :9081 (peers=[localhost:9080 localhost:9082 localhost:9083 localhost:9084])
+2026/04/06 01:00:48 Starting LEADERLESS node node1 on :9080 (peers=[localhost:9081 localhost:9082 localhost:9083 localhost:9084])
+2026/04/06 01:00:48 Starting LEADERLESS node node3 on :9082 (peers=[localhost:9080 localhost:9081 localhost:9083 localhost:9084])
+2026/04/06 01:00:48 Starting LEADERLESS node node4 on :9083 (peers=[localhost:9080 localhost:9081 localhost:9082 localhost:9084])
+2026/04/06 01:00:48 Starting LEADERLESS node node5 on :9084 (peers=[localhost:9080 localhost:9081 localhost:9082 localhost:9083])
+=== RUN   TestLeaderReadFromLeaderConsistent
+2026/04/06 01:00:49 Configuration updated: W=5, R=1
+--- PASS: TestLeaderReadFromLeaderConsistent (1.33s)
+=== RUN   TestLeaderFollowerGetConsistentAfterAck
+2026/04/06 01:00:50 Configuration updated: W=5, R=1
+--- PASS: TestLeaderFollowerGetConsistentAfterAck (1.37s)
+=== RUN   TestLeaderLocalReadShowsInconsistencyWindow
+2026/04/06 01:00:51 Configuration updated: W=1, R=1
+--- PASS: TestLeaderLocalReadShowsInconsistencyWindow (0.10s)
+=== RUN   TestLeaderQuorumReadReturnsLatestValue
+2026/04/06 01:00:51 Configuration updated: W=3, R=3
+--- PASS: TestLeaderQuorumReadReturnsLatestValue (0.76s)
+=== RUN   TestLeaderQuorumWriteAcksAtLeastThreeNodes
+2026/04/06 01:00:52 Configuration updated: W=3, R=3
+--- PASS: TestLeaderQuorumWriteAcksAtLeastThreeNodes (0.71s)
+=== RUN   TestLeaderlessInconsistencyWindow
+--- PASS: TestLeaderlessInconsistencyWindow (1.23s)
+=== RUN   TestLeaderlessCoordinatorConsistentAfterAck
+--- PASS: TestLeaderlessCoordinatorConsistentAfterAck (1.23s)
+=== RUN   TestLeaderlessAllNodesConsistentAfterAck
+--- PASS: TestLeaderlessAllNodesConsistentAfterAck (1.28s)
+PASS
+ok  	hw9/tests	12.475s

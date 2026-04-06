@@ -1,0 +1,6 @@
+﻿NAME           IMAGE                       COMMAND    SERVICE     CREATED          STATUS          PORTS
+lf-follower1   leader-follower-follower1   "./node"   follower1   56 seconds ago   Up 54 seconds   0.0.0.0:8081->8080/tcp, [::]:8081->8080/tcp
+lf-follower2   leader-follower-follower2   "./node"   follower2   56 seconds ago   Up 54 seconds   0.0.0.0:8082->8080/tcp, [::]:8082->8080/tcp
+lf-follower3   leader-follower-follower3   "./node"   follower3   56 seconds ago   Up 54 seconds   0.0.0.0:8083->8080/tcp, [::]:8083->8080/tcp
+lf-follower4   leader-follower-follower4   "./node"   follower4   56 seconds ago   Up 54 seconds   0.0.0.0:8084->8080/tcp, [::]:8084->8080/tcp
+lf-leader      leader-follower-leader      "./node"   leader      56 seconds ago   Up 54 seconds   0.0.0.0:8080->8080/tcp, [::]:8080->8080/tcp

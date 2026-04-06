@@ -1,0 +1,6 @@
+﻿NAME       IMAGE              COMMAND    SERVICE   CREATED          STATUS          PORTS
+ll-node1   leaderless-node1   "./node"   node1     56 seconds ago   Up 54 seconds   0.0.0.0:9080->8080/tcp, [::]:9080->8080/tcp
+ll-node2   leaderless-node2   "./node"   node2     56 seconds ago   Up 54 seconds   0.0.0.0:9081->8080/tcp, [::]:9081->8080/tcp
+ll-node3   leaderless-node3   "./node"   node3     56 seconds ago   Up 54 seconds   0.0.0.0:9082->8080/tcp, [::]:9082->8080/tcp
+ll-node4   leaderless-node4   "./node"   node4     56 seconds ago   Up 54 seconds   0.0.0.0:9083->8080/tcp, [::]:9083->8080/tcp
+ll-node5   leaderless-node5   "./node"   node5     56 seconds ago   Up 54 seconds   0.0.0.0:9084->8080/tcp, [::]:9084->8080/tcp

@@ -1,0 +1,8 @@
+﻿SET:
+{"key":"smoke_ll","value":"beta","version":22,"node_id":"node2"}
+
+COORDINATOR GET:
+{"key":"smoke_ll","value":"beta","version":22,"node_id":"node2"}
+
+PEER GET:
+{"key":"smoke_ll","value":"beta","version":22,"node_id":"node5"}

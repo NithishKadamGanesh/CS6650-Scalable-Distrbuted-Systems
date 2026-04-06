@@ -1,0 +1,8 @@
+﻿SET:
+{"key":"smoke_lf","value":"alpha","version":2,"node_id":"leader"}
+
+LEADER GET:
+{"key":"smoke_lf","value":"alpha","version":2,"node_id":"leader"}
+
+FOLLOWER GET:
+{"key":"smoke_lf","value":"alpha","version":2,"node_id":"leader"}

@@ -1,0 +1,13 @@
+﻿Leader-Follower leader:
+{
+    "node_id":  "leader",
+    "role":  "leader",
+    "status":  "ok"
+}
+
+Leaderless node1:
+{
+    "node_id":  "node1",
+    "role":  "leaderless",
+    "status":  "ok"
+}

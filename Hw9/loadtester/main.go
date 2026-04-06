@@ -59,6 +59,7 @@ type RequestResult struct {
 type VersionTracker struct {
 	mu       sync.RWMutex
 	versions map[string]int64
+	issued   map[string]int64
 	// Track write timestamps for measuring read-write interval
 	writeTimes map[string]time.Time
 }
@@ -66,22 +67,33 @@ type VersionTracker struct {
 func NewVersionTracker() *VersionTracker {
 	return &VersionTracker{
 		versions:   make(map[string]int64),
+		issued:     make(map[string]int64),
 		writeTimes: make(map[string]time.Time),
 	}
+}
+
+func (vt *VersionTracker) RecordIssuedWrite(key string, clientSeq int64) {
+	vt.mu.Lock()
+	defer vt.mu.Unlock()
+	vt.issued[key] = clientSeq
+	vt.writeTimes[key] = time.Now()
 }
 
 func (vt *VersionTracker) UpdateWrite(key string, version int64) {
 	vt.mu.Lock()
 	defer vt.mu.Unlock()
 	vt.versions[key] = version
-	vt.writeTimes[key] = time.Now()
 }
 
-func (vt *VersionTracker) IsStale(key string, version int64) bool {
+func (vt *VersionTracker) IsStale(key string, value string) bool {
 	vt.mu.RLock()
 	defer vt.mu.RUnlock()
-	if latest, ok := vt.versions[key]; ok {
-		return version < latest
+	observedSeq, ok := parseClientSeq(value)
+	if !ok {
+		return false
+	}
+	if latest, ok := vt.issued[key]; ok {
+		return observedSeq < latest
 	}
 	return false
 }
@@ -109,6 +121,7 @@ func main() {
 	var results []RequestResult
 	var resultsMu sync.Mutex
 	var staleCount int64
+	var clientSeq int64
 
 	// Work queue
 	work := make(chan int, cfg.NumRequests)
@@ -142,7 +155,9 @@ func main() {
 
 				if isWrite {
 					result.Type = "write"
-					value := fmt.Sprintf("val_%d_%d", keyIdx, time.Now().UnixNano())
+					issuedSeq := atomic.AddInt64(&clientSeq, 1)
+					value := fmt.Sprintf("seq_%d_val_%d_%d", issuedSeq, keyIdx, time.Now().UnixNano())
+					tracker.RecordIssuedWrite(key, issuedSeq)
 
 					// Send write to a write node
 					node := cfg.WriteNodes[rng.Intn(len(cfg.WriteNodes))]
@@ -168,7 +183,7 @@ func main() {
 
 					if err == nil && statusCode == 200 {
 						result.Version = resp.Version
-						if tracker.IsStale(key, resp.Version) {
+						if tracker.IsStale(key, resp.Value) {
 							result.Stale = true
 							atomic.AddInt64(&staleCount, 1)
 						}
@@ -335,4 +350,20 @@ func getEnvInt(key string, fallback int) int {
 		}
 	}
 	return fallback
+}
+
+func parseClientSeq(value string) (int64, bool) {
+	if !strings.HasPrefix(value, "seq_") {
+		return 0, false
+	}
+	rest := strings.TrimPrefix(value, "seq_")
+	idx := strings.Index(rest, "_")
+	if idx <= 0 {
+		return 0, false
+	}
+	seq, err := strconv.ParseInt(rest[:idx], 10, 64)
+	if err != nil {
+		return 0, false
+	}
+	return seq, true
 }
