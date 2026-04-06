@@ -1,0 +1,86 @@
+version: "3.8"
+
+# Leader-Follower KV Cluster: 1 Leader + 4 Followers (N=5)
+# W and R are configurable via environment variables or the /configure endpoint.
+
+services:
+  leader:
+    build:
+      context: ..
+      dockerfile: leader-follower/Dockerfile
+    container_name: lf-leader
+    ports:
+      - "8080:8080"
+    environment:
+      - NODE_ROLE=leader
+      - NODE_ID=leader
+      - PORT=8080
+      - PEERS=follower1:8080,follower2:8080,follower3:8080,follower4:8080
+      - W_VALUE=${W_VALUE:-5}
+      - R_VALUE=${R_VALUE:-1}
+    networks:
+      - kvnet
+
+  follower1:
+    build:
+      context: ..
+      dockerfile: leader-follower/Dockerfile
+    container_name: lf-follower1
+    ports:
+      - "8081:8080"
+    environment:
+      - NODE_ROLE=follower
+      - NODE_ID=follower1
+      - PORT=8080
+      - LEADER_URL=leader:8080
+    networks:
+      - kvnet
+
+  follower2:
+    build:
+      context: ..
+      dockerfile: leader-follower/Dockerfile
+    container_name: lf-follower2
+    ports:
+      - "8082:8080"
+    environment:
+      - NODE_ROLE=follower
+      - NODE_ID=follower2
+      - PORT=8080
+      - LEADER_URL=leader:8080
+    networks:
+      - kvnet
+
+  follower3:
+    build:
+      context: ..
+      dockerfile: leader-follower/Dockerfile
+    container_name: lf-follower3
+    ports:
+      - "8083:8080"
+    environment:
+      - NODE_ROLE=follower
+      - NODE_ID=follower3
+      - PORT=8080
+      - LEADER_URL=leader:8080
+    networks:
+      - kvnet
+
+  follower4:
+    build:
+      context: ..
+      dockerfile: leader-follower/Dockerfile
+    container_name: lf-follower4
+    ports:
+      - "8084:8080"
+    environment:
+      - NODE_ROLE=follower
+      - NODE_ID=follower4
+      - PORT=8080
+      - LEADER_URL=leader:8080
+    networks:
+      - kvnet
+
+networks:
+  kvnet:
+    driver: bridge

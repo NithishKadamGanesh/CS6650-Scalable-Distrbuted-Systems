@@ -1,0 +1,79 @@
+version: "3.8"
+
+# Leaderless KV Cluster: 5 equal nodes (W=N, R=1)
+# Any node can handle reads and writes.
+
+services:
+  node1:
+    build:
+      context: ..
+      dockerfile: leaderless/Dockerfile
+    container_name: ll-node1
+    ports:
+      - "9080:8080"
+    environment:
+      - NODE_ID=node1
+      - PORT=8080
+      - PEERS=node2:8080,node3:8080,node4:8080,node5:8080
+    networks:
+      - kvnet
+
+  node2:
+    build:
+      context: ..
+      dockerfile: leaderless/Dockerfile
+    container_name: ll-node2
+    ports:
+      - "9081:8080"
+    environment:
+      - NODE_ID=node2
+      - PORT=8080
+      - PEERS=node1:8080,node3:8080,node4:8080,node5:8080
+    networks:
+      - kvnet
+
+  node3:
+    build:
+      context: ..
+      dockerfile: leaderless/Dockerfile
+    container_name: ll-node3
+    ports:
+      - "9082:8080"
+    environment:
+      - NODE_ID=node3
+      - PORT=8080
+      - PEERS=node1:8080,node2:8080,node4:8080,node5:8080
+    networks:
+      - kvnet
+
+  node4:
+    build:
+      context: ..
+      dockerfile: leaderless/Dockerfile
+    container_name: ll-node4
+    ports:
+      - "9083:8080"
+    environment:
+      - NODE_ID=node4
+      - PORT=8080
+      - PEERS=node1:8080,node2:8080,node3:8080,node5:8080
+    networks:
+      - kvnet
+
+  node5:
+    build:
+      context: ..
+      dockerfile: leaderless/Dockerfile
+    container_name: ll-node5
+    ports:
+      - "9084:8080"
+    environment:
+      - NODE_ID=node5
+      - PORT=8080
+      - PEERS=node1:8080,node2:8080,node3:8080,node4:8080
+    networks:
+      - kvnet
+
+networks:
+  kvnet:
+    driver: bridge
