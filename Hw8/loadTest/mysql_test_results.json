@@ -1,0 +1,1052 @@
+[
+  {
+    "operation": "create_cart",
+    "response_time": 53.38,
+    "success": true,
+    "status_code": 201,
+    "timestamp": "2026-03-22T12:44:34.053383+00:00"
+  },
+  {
+    "operation": "create_cart",
+    "response_time": 43.99,
+    "success": true,
+    "status_code": 201,
+    "timestamp": "2026-03-22T12:44:34.097832+00:00"
+  },
+  {
+    "operation": "create_cart",
+    "response_time": 40.88,
+    "success": true,
+    "status_code": 201,
+    "timestamp": "2026-03-22T12:44:34.138729+00:00"
+  },
+  {
+    "operation": "create_cart",
+    "response_time": 43.71,
+    "success": true,
+    "status_code": 201,
+    "timestamp": "2026-03-22T12:44:34.182844+00:00"
+  },
+  {
+    "operation": "create_cart",
+    "response_time": 38.62,
+    "success": true,
+    "status_code": 201,
+    "timestamp": "2026-03-22T12:44:34.221627+00:00"
+  },
+  {
+    "operation": "create_cart",
+    "response_time": 44.3,
+    "success": true,
+    "status_code": 201,
+    "timestamp": "2026-03-22T12:44:34.265687+00:00"
+  },
+  {
+    "operation": "create_cart",
+    "response_time": 40.37,
+    "success": true,
+    "status_code": 201,
+    "timestamp": "2026-03-22T12:44:34.306580+00:00"
+  },
+  {
+    "operation": "create_cart",
+    "response_time": 47.79,
+    "success": true,
+    "status_code": 201,
+    "timestamp": "2026-03-22T12:44:34.354159+00:00"
+  },
+  {
+    "operation": "create_cart",
+    "response_time": 45.48,
+    "success": true,
+    "status_code": 201,
+    "timestamp": "2026-03-22T12:44:34.399818+00:00"
+  },
+  {
+    "operation": "create_cart",
+    "response_time": 43.77,
+    "success": true,
+    "status_code": 201,
+    "timestamp": "2026-03-22T12:44:34.443986+00:00"
+  },
+  {
+    "operation": "create_cart",
+    "response_time": 41.06,
+    "success": true,
+    "status_code": 201,
+    "timestamp": "2026-03-22T12:44:34.484966+00:00"
+  },
+  {
+    "operation": "create_cart",
+    "response_time": 39.26,
+    "success": true,
+    "status_code": 201,
+    "timestamp": "2026-03-22T12:44:34.524835+00:00"
+  },
+  {
+    "operation": "create_cart",
+    "response_time": 44.29,
+    "success": true,
+    "status_code": 201,
+    "timestamp": "2026-03-22T12:44:34.569230+00:00"
+  },
+  {
+    "operation": "create_cart",
+    "response_time": 39.95,
+    "success": true,
+    "status_code": 201,
+    "timestamp": "2026-03-22T12:44:34.608261+00:00"
+  },
+  {
+    "operation": "create_cart",
+    "response_time": 42.79,
+    "success": true,
+    "status_code": 201,
+    "timestamp": "2026-03-22T12:44:34.652136+00:00"
+  },
+  {
+    "operation": "create_cart",
+    "response_time": 46.12,
+    "success": true,
+    "status_code": 201,
+    "timestamp": "2026-03-22T12:44:34.697958+00:00"
+  },
+  {
+    "operation": "create_cart",
+    "response_time": 46.69,
+    "success": true,
+    "status_code": 201,
+    "timestamp": "2026-03-22T12:44:34.745101+00:00"
+  },
+  {
+    "operation": "create_cart",
+    "response_time": 43.95,
+    "success": true,
+    "status_code": 201,
+    "timestamp": "2026-03-22T12:44:34.789568+00:00"
+  },
+  {
+    "operation": "create_cart",
+    "response_time": 47.67,
+    "success": true,
+    "status_code": 201,
+    "timestamp": "2026-03-22T12:44:34.837000+00:00"
+  },
+  {
+    "operation": "create_cart",
+    "response_time": 44.22,
+    "success": true,
+    "status_code": 201,
+    "timestamp": "2026-03-22T12:44:34.881555+00:00"
+  },
+  {
+    "operation": "create_cart",
+    "response_time": 39.34,
+    "success": true,
+    "status_code": 201,
+    "timestamp": "2026-03-22T12:44:34.920752+00:00"
+  },
+  {
+    "operation": "create_cart",
+    "response_time": 40.6,
+    "success": true,
+    "status_code": 201,
+    "timestamp": "2026-03-22T12:44:34.961465+00:00"
+  },
+  {
+    "operation": "create_cart",
+    "response_time": 39.14,
+    "success": true,
+    "status_code": 201,
+    "timestamp": "2026-03-22T12:44:35.001434+00:00"
+  },
+  {
+    "operation": "create_cart",
+    "response_time": 40.8,
+    "success": true,
+    "status_code": 201,
+    "timestamp": "2026-03-22T12:44:35.042277+00:00"
+  },
+  {
+    "operation": "create_cart",
+    "response_time": 47.35,
+    "success": true,
+    "status_code": 201,
+    "timestamp": "2026-03-22T12:44:35.089227+00:00"
+  },
+  {
+    "operation": "create_cart",
+    "response_time": 38.57,
+    "success": true,
+    "status_code": 201,
+    "timestamp": "2026-03-22T12:44:35.128291+00:00"
+  },
+  {
+    "operation": "create_cart",
+    "response_time": 38.45,
+    "success": true,
+    "status_code": 201,
+    "timestamp": "2026-03-22T12:44:35.167186+00:00"
+  },
+  {
+    "operation": "create_cart",
+    "response_time": 41.94,
+    "success": true,
+    "status_code": 201,
+    "timestamp": "2026-03-22T12:44:35.209235+00:00"
+  },
+  {
+    "operation": "create_cart",
+    "response_time": 38.9,
+    "success": true,
+    "status_code": 201,
+    "timestamp": "2026-03-22T12:44:35.247949+00:00"
+  },
+  {
+    "operation": "create_cart",
+    "response_time": 38.85,
+    "success": true,
+    "status_code": 201,
+    "timestamp": "2026-03-22T12:44:35.287506+00:00"
+  },
+  {
+    "operation": "create_cart",
+    "response_time": 39.35,
+    "success": true,
+    "status_code": 201,
+    "timestamp": "2026-03-22T12:44:35.327003+00:00"
+  },
+  {
+    "operation": "create_cart",
+    "response_time": 43.08,
+    "success": true,
+    "status_code": 201,
+    "timestamp": "2026-03-22T12:44:35.370093+00:00"
+  },
+  {
+    "operation": "create_cart",
+    "response_time": 44.09,
+    "success": true,
+    "status_code": 201,
+    "timestamp": "2026-03-22T12:44:35.413957+00:00"
+  },
+  {
+    "operation": "create_cart",
+    "response_time": 39.38,
+    "success": true,
+    "status_code": 201,
+    "timestamp": "2026-03-22T12:44:35.454032+00:00"
+  },
+  {
+    "operation": "create_cart",
+    "response_time": 39.67,
+    "success": true,
+    "status_code": 201,
+    "timestamp": "2026-03-22T12:44:35.493692+00:00"
+  },
+  {
+    "operation": "create_cart",
+    "response_time": 39.28,
+    "success": true,
+    "status_code": 201,
+    "timestamp": "2026-03-22T12:44:35.533142+00:00"
+  },
+  {
+    "operation": "create_cart",
+    "response_time": 40.77,
+    "success": true,
+    "status_code": 201,
+    "timestamp": "2026-03-22T12:44:35.573765+00:00"
+  },
+  {
+    "operation": "create_cart",
+    "response_time": 37.4,
+    "success": true,
+    "status_code": 201,
+    "timestamp": "2026-03-22T12:44:35.610815+00:00"
+  },
+  {
+    "operation": "create_cart",
+    "response_time": 38.93,
+    "success": true,
+    "status_code": 201,
+    "timestamp": "2026-03-22T12:44:35.650083+00:00"
+  },
+  {
+    "operation": "create_cart",
+    "response_time": 45.45,
+    "success": true,
+    "status_code": 201,
+    "timestamp": "2026-03-22T12:44:35.696618+00:00"
+  },
+  {
+    "operation": "create_cart",
+    "response_time": 43.22,
+    "success": true,
+    "status_code": 201,
+    "timestamp": "2026-03-22T12:44:35.740096+00:00"
+  },
+  {
+    "operation": "create_cart",
+    "response_time": 41.87,
+    "success": true,
+    "status_code": 201,
+    "timestamp": "2026-03-22T12:44:35.781768+00:00"
+  },
+  {
+    "operation": "create_cart",
+    "response_time": 39.58,
+    "success": true,
+    "status_code": 201,
+    "timestamp": "2026-03-22T12:44:35.821624+00:00"
+  },
+  {
+    "operation": "create_cart",
+    "response_time": 39.32,
+    "success": true,
+    "status_code": 201,
+    "timestamp": "2026-03-22T12:44:35.860827+00:00"
+  },
+  {
+    "operation": "create_cart",
+    "response_time": 59.95,
+    "success": true,
+    "status_code": 201,
+    "timestamp": "2026-03-22T12:44:35.921110+00:00"
+  },
+  {
+    "operation": "create_cart",
+    "response_time": 64.81,
+    "success": true,
+    "status_code": 201,
+    "timestamp": "2026-03-22T12:44:35.986157+00:00"
+  },
+  {
+    "operation": "create_cart",
+    "response_time": 47.59,
+    "success": true,
+    "status_code": 201,
+    "timestamp": "2026-03-22T12:44:36.033488+00:00"
+  },
+  {
+    "operation": "create_cart",
+    "response_time": 38.34,
+    "success": true,
+    "status_code": 201,
+    "timestamp": "2026-03-22T12:44:36.072235+00:00"
+  },
+  {
+    "operation": "create_cart",
+    "response_time": 39.34,
+    "success": true,
+    "status_code": 201,
+    "timestamp": "2026-03-22T12:44:36.111559+00:00"
+  },
+  {
+    "operation": "create_cart",
+    "response_time": 42.68,
+    "success": true,
+    "status_code": 201,
+    "timestamp": "2026-03-22T12:44:36.154587+00:00"
+  },
+  {
+    "operation": "add_items",
+    "response_time": 128.45,
+    "success": true,
+    "status_code": 204,
+    "timestamp": "2026-03-22T12:44:36.283522+00:00"
+  },
+  {
+    "operation": "add_items",
+    "response_time": 126.14,
+    "success": true,
+    "status_code": 204,
+    "timestamp": "2026-03-22T12:44:36.409353+00:00"
+  },
+  {
+    "operation": "add_items",
+    "response_time": 127.54,
+    "success": true,
+    "status_code": 204,
+    "timestamp": "2026-03-22T12:44:36.537505+00:00"
+  },
+  {
+    "operation": "add_items",
+    "response_time": 122.88,
+    "success": true,
+    "status_code": 204,
+    "timestamp": "2026-03-22T12:44:36.660616+00:00"
+  },
+  {
+    "operation": "add_items",
+    "response_time": 128.27,
+    "success": true,
+    "status_code": 204,
+    "timestamp": "2026-03-22T12:44:36.788936+00:00"
+  },
+  {
+    "operation": "add_items",
+    "response_time": 125.46,
+    "success": true,
+    "status_code": 204,
+    "timestamp": "2026-03-22T12:44:36.914784+00:00"
+  },
+  {
+    "operation": "add_items",
+    "response_time": 126.01,
+    "success": true,
+    "status_code": 204,
+    "timestamp": "2026-03-22T12:44:37.040870+00:00"
+  },
+  {
+    "operation": "add_items",
+    "response_time": 132.6,
+    "success": true,
+    "status_code": 204,
+    "timestamp": "2026-03-22T12:44:37.173632+00:00"
+  },
+  {
+    "operation": "add_items",
+    "response_time": 131.55,
+    "success": true,
+    "status_code": 204,
+    "timestamp": "2026-03-22T12:44:37.304816+00:00"
+  },
+  {
+    "operation": "add_items",
+    "response_time": 130.39,
+    "success": true,
+    "status_code": 204,
+    "timestamp": "2026-03-22T12:44:37.435909+00:00"
+  },
+  {
+    "operation": "add_items",
+    "response_time": 126.75,
+    "success": true,
+    "status_code": 204,
+    "timestamp": "2026-03-22T12:44:37.562791+00:00"
+  },
+  {
+    "operation": "add_items",
+    "response_time": 129.59,
+    "success": true,
+    "status_code": 204,
+    "timestamp": "2026-03-22T12:44:37.692578+00:00"
+  },
+  {
+    "operation": "add_items",
+    "response_time": 132.47,
+    "success": true,
+    "status_code": 204,
+    "timestamp": "2026-03-22T12:44:37.824743+00:00"
+  },
+  {
+    "operation": "add_items",
+    "response_time": 122.12,
+    "success": true,
+    "status_code": 204,
+    "timestamp": "2026-03-22T12:44:37.947254+00:00"
+  },
+  {
+    "operation": "add_items",
+    "response_time": 126.15,
+    "success": true,
+    "status_code": 204,
+    "timestamp": "2026-03-22T12:44:38.074289+00:00"
+  },
+  {
+    "operation": "add_items",
+    "response_time": 126.81,
+    "success": true,
+    "status_code": 204,
+    "timestamp": "2026-03-22T12:44:38.200896+00:00"
+  },
+  {
+    "operation": "add_items",
+    "response_time": 125.81,
+    "success": true,
+    "status_code": 204,
+    "timestamp": "2026-03-22T12:44:38.326935+00:00"
+  },
+  {
+    "operation": "add_items",
+    "response_time": 142.84,
+    "success": true,
+    "status_code": 204,
+    "timestamp": "2026-03-22T12:44:38.469949+00:00"
+  },
+  {
+    "operation": "add_items",
+    "response_time": 123.81,
+    "success": true,
+    "status_code": 204,
+    "timestamp": "2026-03-22T12:44:38.593695+00:00"
+  },
+  {
+    "operation": "add_items",
+    "response_time": 122.1,
+    "success": true,
+    "status_code": 204,
+    "timestamp": "2026-03-22T12:44:38.715965+00:00"
+  },
+  {
+    "operation": "add_items",
+    "response_time": 125.61,
+    "success": true,
+    "status_code": 204,
+    "timestamp": "2026-03-22T12:44:38.842049+00:00"
+  },
+  {
+    "operation": "add_items",
+    "response_time": 126.06,
+    "success": true,
+    "status_code": 204,
+    "timestamp": "2026-03-22T12:44:38.968283+00:00"
+  },
+  {
+    "operation": "add_items",
+    "response_time": 129.97,
+    "success": true,
+    "status_code": 204,
+    "timestamp": "2026-03-22T12:44:39.098415+00:00"
+  },
+  {
+    "operation": "add_items",
+    "response_time": 125.67,
+    "success": true,
+    "status_code": 204,
+    "timestamp": "2026-03-22T12:44:39.224037+00:00"
+  },
+  {
+    "operation": "add_items",
+    "response_time": 134.32,
+    "success": true,
+    "status_code": 204,
+    "timestamp": "2026-03-22T12:44:39.358945+00:00"
+  },
+  {
+    "operation": "add_items",
+    "response_time": 130.62,
+    "success": true,
+    "status_code": 204,
+    "timestamp": "2026-03-22T12:44:39.488979+00:00"
+  },
+  {
+    "operation": "add_items",
+    "response_time": 130.23,
+    "success": true,
+    "status_code": 204,
+    "timestamp": "2026-03-22T12:44:39.619830+00:00"
+  },
+  {
+    "operation": "add_items",
+    "response_time": 128.2,
+    "success": true,
+    "status_code": 204,
+    "timestamp": "2026-03-22T12:44:39.747470+00:00"
+  },
+  {
+    "operation": "add_items",
+    "response_time": 125.72,
+    "success": true,
+    "status_code": 204,
+    "timestamp": "2026-03-22T12:44:39.874163+00:00"
+  },
+  {
+    "operation": "add_items",
+    "response_time": 124.24,
+    "success": true,
+    "status_code": 204,
+    "timestamp": "2026-03-22T12:44:39.998575+00:00"
+  },
+  {
+    "operation": "add_items",
+    "response_time": 138.02,
+    "success": true,
+    "status_code": 204,
+    "timestamp": "2026-03-22T12:44:40.137101+00:00"
+  },
+  {
+    "operation": "add_items",
+    "response_time": 124.47,
+    "success": true,
+    "status_code": 204,
+    "timestamp": "2026-03-22T12:44:40.261531+00:00"
+  },
+  {
+    "operation": "add_items",
+    "response_time": 130.23,
+    "success": true,
+    "status_code": 204,
+    "timestamp": "2026-03-22T12:44:40.392078+00:00"
+  },
+  {
+    "operation": "add_items",
+    "response_time": 126.12,
+    "success": true,
+    "status_code": 204,
+    "timestamp": "2026-03-22T12:44:40.517867+00:00"
+  },
+  {
+    "operation": "add_items",
+    "response_time": 127.83,
+    "success": true,
+    "status_code": 204,
+    "timestamp": "2026-03-22T12:44:40.646361+00:00"
+  },
+  {
+    "operation": "add_items",
+    "response_time": 127.2,
+    "success": true,
+    "status_code": 204,
+    "timestamp": "2026-03-22T12:44:40.773904+00:00"
+  },
+  {
+    "operation": "add_items",
+    "response_time": 127.35,
+    "success": true,
+    "status_code": 204,
+    "timestamp": "2026-03-22T12:44:40.900689+00:00"
+  },
+  {
+    "operation": "add_items",
+    "response_time": 124.48,
+    "success": true,
+    "status_code": 204,
+    "timestamp": "2026-03-22T12:44:41.025360+00:00"
+  },
+  {
+    "operation": "add_items",
+    "response_time": 123.19,
+    "success": true,
+    "status_code": 204,
+    "timestamp": "2026-03-22T12:44:41.149101+00:00"
+  },
+  {
+    "operation": "add_items",
+    "response_time": 128.08,
+    "success": true,
+    "status_code": 204,
+    "timestamp": "2026-03-22T12:44:41.277085+00:00"
+  },
+  {
+    "operation": "add_items",
+    "response_time": 126.0,
+    "success": true,
+    "status_code": 204,
+    "timestamp": "2026-03-22T12:44:41.403459+00:00"
+  },
+  {
+    "operation": "add_items",
+    "response_time": 122.98,
+    "success": true,
+    "status_code": 204,
+    "timestamp": "2026-03-22T12:44:41.526635+00:00"
+  },
+  {
+    "operation": "add_items",
+    "response_time": 128.42,
+    "success": true,
+    "status_code": 204,
+    "timestamp": "2026-03-22T12:44:41.654658+00:00"
+  },
+  {
+    "operation": "add_items",
+    "response_time": 125.8,
+    "success": true,
+    "status_code": 204,
+    "timestamp": "2026-03-22T12:44:41.781722+00:00"
+  },
+  {
+    "operation": "add_items",
+    "response_time": 130.92,
+    "success": true,
+    "status_code": 204,
+    "timestamp": "2026-03-22T12:44:41.912682+00:00"
+  },
+  {
+    "operation": "add_items",
+    "response_time": 121.84,
+    "success": true,
+    "status_code": 204,
+    "timestamp": "2026-03-22T12:44:42.034804+00:00"
+  },
+  {
+    "operation": "add_items",
+    "response_time": 127.66,
+    "success": true,
+    "status_code": 204,
+    "timestamp": "2026-03-22T12:44:42.162316+00:00"
+  },
+  {
+    "operation": "add_items",
+    "response_time": 141.35,
+    "success": true,
+    "status_code": 204,
+    "timestamp": "2026-03-22T12:44:42.304123+00:00"
+  },
+  {
+    "operation": "add_items",
+    "response_time": 129.52,
+    "success": true,
+    "status_code": 204,
+    "timestamp": "2026-03-22T12:44:42.433603+00:00"
+  },
+  {
+    "operation": "add_items",
+    "response_time": 123.29,
+    "success": true,
+    "status_code": 204,
+    "timestamp": "2026-03-22T12:44:42.557398+00:00"
+  },
+  {
+    "operation": "get_cart",
+    "response_time": 123.49,
+    "success": true,
+    "status_code": 200,
+    "timestamp": "2026-03-22T12:44:42.680580+00:00"
+  },
+  {
+    "operation": "get_cart",
+    "response_time": 123.57,
+    "success": true,
+    "status_code": 200,
+    "timestamp": "2026-03-22T12:44:42.804436+00:00"
+  },
+  {
+    "operation": "get_cart",
+    "response_time": 119.26,
+    "success": true,
+    "status_code": 200,
+    "timestamp": "2026-03-22T12:44:42.924543+00:00"
+  },
+  {
+    "operation": "get_cart",
+    "response_time": 118.62,
+    "success": true,
+    "status_code": 200,
+    "timestamp": "2026-03-22T12:44:43.042433+00:00"
+  },
+  {
+    "operation": "get_cart",
+    "response_time": 124.45,
+    "success": true,
+    "status_code": 200,
+    "timestamp": "2026-03-22T12:44:43.166795+00:00"
+  },
+  {
+    "operation": "get_cart",
+    "response_time": 121.98,
+    "success": true,
+    "status_code": 200,
+    "timestamp": "2026-03-22T12:44:43.289999+00:00"
+  },
+  {
+    "operation": "get_cart",
+    "response_time": 121.9,
+    "success": true,
+    "status_code": 200,
+    "timestamp": "2026-03-22T12:44:43.411511+00:00"
+  },
+  {
+    "operation": "get_cart",
+    "response_time": 122.24,
+    "success": true,
+    "status_code": 200,
+    "timestamp": "2026-03-22T12:44:43.534297+00:00"
+  },
+  {
+    "operation": "get_cart",
+    "response_time": 122.78,
+    "success": true,
+    "status_code": 200,
+    "timestamp": "2026-03-22T12:44:43.657122+00:00"
+  },
+  {
+    "operation": "get_cart",
+    "response_time": 121.02,
+    "success": true,
+    "status_code": 200,
+    "timestamp": "2026-03-22T12:44:43.778463+00:00"
+  },
+  {
+    "operation": "get_cart",
+    "response_time": 126.19,
+    "success": true,
+    "status_code": 200,
+    "timestamp": "2026-03-22T12:44:43.904185+00:00"
+  },
+  {
+    "operation": "get_cart",
+    "response_time": 125.27,
+    "success": true,
+    "status_code": 200,
+    "timestamp": "2026-03-22T12:44:44.029769+00:00"
+  },
+  {
+    "operation": "get_cart",
+    "response_time": 123.43,
+    "success": true,
+    "status_code": 200,
+    "timestamp": "2026-03-22T12:44:44.154105+00:00"
+  },
+  {
+    "operation": "get_cart",
+    "response_time": 124.79,
+    "success": true,
+    "status_code": 200,
+    "timestamp": "2026-03-22T12:44:44.278659+00:00"
+  },
+  {
+    "operation": "get_cart",
+    "response_time": 122.37,
+    "success": true,
+    "status_code": 200,
+    "timestamp": "2026-03-22T12:44:44.401103+00:00"
+  },
+  {
+    "operation": "get_cart",
+    "response_time": 123.16,
+    "success": true,
+    "status_code": 200,
+    "timestamp": "2026-03-22T12:44:44.524499+00:00"
+  },
+  {
+    "operation": "get_cart",
+    "response_time": 120.24,
+    "success": true,
+    "status_code": 200,
+    "timestamp": "2026-03-22T12:44:44.645249+00:00"
+  },
+  {
+    "operation": "get_cart",
+    "response_time": 118.91,
+    "success": true,
+    "status_code": 200,
+    "timestamp": "2026-03-22T12:44:44.763522+00:00"
+  },
+  {
+    "operation": "get_cart",
+    "response_time": 127.89,
+    "success": true,
+    "status_code": 200,
+    "timestamp": "2026-03-22T12:44:44.892204+00:00"
+  },
+  {
+    "operation": "get_cart",
+    "response_time": 129.59,
+    "success": true,
+    "status_code": 200,
+    "timestamp": "2026-03-22T12:44:45.021631+00:00"
+  },
+  {
+    "operation": "get_cart",
+    "response_time": 124.42,
+    "success": true,
+    "status_code": 200,
+    "timestamp": "2026-03-22T12:44:45.146097+00:00"
+  },
+  {
+    "operation": "get_cart",
+    "response_time": 121.35,
+    "success": true,
+    "status_code": 200,
+    "timestamp": "2026-03-22T12:44:45.268407+00:00"
+  },
+  {
+    "operation": "get_cart",
+    "response_time": 123.19,
+    "success": true,
+    "status_code": 200,
+    "timestamp": "2026-03-22T12:44:45.391459+00:00"
+  },
+  {
+    "operation": "get_cart",
+    "response_time": 127.36,
+    "success": true,
+    "status_code": 200,
+    "timestamp": "2026-03-22T12:44:45.518487+00:00"
+  },
+  {
+    "operation": "get_cart",
+    "response_time": 122.26,
+    "success": true,
+    "status_code": 200,
+    "timestamp": "2026-03-22T12:44:45.641424+00:00"
+  },
+  {
+    "operation": "get_cart",
+    "response_time": 122.81,
+    "success": true,
+    "status_code": 200,
+    "timestamp": "2026-03-22T12:44:45.764071+00:00"
+  },
+  {
+    "operation": "get_cart",
+    "response_time": 129.3,
+    "success": true,
+    "status_code": 200,
+    "timestamp": "2026-03-22T12:44:45.893409+00:00"
+  },
+  {
+    "operation": "get_cart",
+    "response_time": 125.21,
+    "success": true,
+    "status_code": 200,
+    "timestamp": "2026-03-22T12:44:46.018962+00:00"
+  },
+  {
+    "operation": "get_cart",
+    "response_time": 127.29,
+    "success": true,
+    "status_code": 200,
+    "timestamp": "2026-03-22T12:44:46.146728+00:00"
+  },
+  {
+    "operation": "get_cart",
+    "response_time": 120.85,
+    "success": true,
+    "status_code": 200,
+    "timestamp": "2026-03-22T12:44:46.267716+00:00"
+  },
+  {
+    "operation": "get_cart",
+    "response_time": 128.77,
+    "success": true,
+    "status_code": 200,
+    "timestamp": "2026-03-22T12:44:46.396773+00:00"
+  },
+  {
+    "operation": "get_cart",
+    "response_time": 129.17,
+    "success": true,
+    "status_code": 200,
+    "timestamp": "2026-03-22T12:44:46.525512+00:00"
+  },
+  {
+    "operation": "get_cart",
+    "response_time": 124.6,
+    "success": true,
+    "status_code": 200,
+    "timestamp": "2026-03-22T12:44:46.650606+00:00"
+  },
+  {
+    "operation": "get_cart",
+    "response_time": 130.61,
+    "success": true,
+    "status_code": 200,
+    "timestamp": "2026-03-22T12:44:46.781104+00:00"
+  },
+  {
+    "operation": "get_cart",
+    "response_time": 118.86,
+    "success": true,
+    "status_code": 200,
+    "timestamp": "2026-03-22T12:44:46.900973+00:00"
+  },
+  {
+    "operation": "get_cart",
+    "response_time": 124.95,
+    "success": true,
+    "status_code": 200,
+    "timestamp": "2026-03-22T12:44:47.025927+00:00"
+  },
+  {
+    "operation": "get_cart",
+    "response_time": 125.17,
+    "success": true,
+    "status_code": 200,
+    "timestamp": "2026-03-22T12:44:47.150552+00:00"
+  },
+  {
+    "operation": "get_cart",
+    "response_time": 125.76,
+    "success": true,
+    "status_code": 200,
+    "timestamp": "2026-03-22T12:44:47.277060+00:00"
+  },
+  {
+    "operation": "get_cart",
+    "response_time": 126.2,
+    "success": true,
+    "status_code": 200,
+    "timestamp": "2026-03-22T12:44:47.402498+00:00"
+  },
+  {
+    "operation": "get_cart",
+    "response_time": 124.93,
+    "success": true,
+    "status_code": 200,
+    "timestamp": "2026-03-22T12:44:47.528098+00:00"
+  },
+  {
+    "operation": "get_cart",
+    "response_time": 125.42,
+    "success": true,
+    "status_code": 200,
+    "timestamp": "2026-03-22T12:44:47.653780+00:00"
+  },
+  {
+    "operation": "get_cart",
+    "response_time": 123.02,
+    "success": true,
+    "status_code": 200,
+    "timestamp": "2026-03-22T12:44:47.777831+00:00"
+  },
+  {
+    "operation": "get_cart",
+    "response_time": 122.24,
+    "success": true,
+    "status_code": 200,
+    "timestamp": "2026-03-22T12:44:47.900149+00:00"
+  },
+  {
+    "operation": "get_cart",
+    "response_time": 133.84,
+    "success": true,
+    "status_code": 200,
+    "timestamp": "2026-03-22T12:44:48.034089+00:00"
+  },
+  {
+    "operation": "get_cart",
+    "response_time": 123.45,
+    "success": true,
+    "status_code": 200,
+    "timestamp": "2026-03-22T12:44:48.157251+00:00"
+  },
+  {
+    "operation": "get_cart",
+    "response_time": 126.6,
+    "success": true,
+    "status_code": 200,
+    "timestamp": "2026-03-22T12:44:48.284676+00:00"
+  },
+  {
+    "operation": "get_cart",
+    "response_time": 122.01,
+    "success": true,
+    "status_code": 200,
+    "timestamp": "2026-03-22T12:44:48.405994+00:00"
+  },
+  {
+    "operation": "get_cart",
+    "response_time": 156.8,
+    "success": true,
+    "status_code": 200,
+    "timestamp": "2026-03-22T12:44:48.563396+00:00"
+  },
+  {
+    "operation": "get_cart",
+    "response_time": 122.27,
+    "success": true,
+    "status_code": 200,
+    "timestamp": "2026-03-22T12:44:48.685961+00:00"
+  },
+  {
+    "operation": "get_cart",
+    "response_time": 123.44,
+    "success": true,
+    "status_code": 200,
+    "timestamp": "2026-03-22T12:44:48.809626+00:00"
+  }
+]

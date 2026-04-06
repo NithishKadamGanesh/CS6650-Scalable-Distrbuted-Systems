@@ -1,0 +1,385 @@
+{
+  "test_1_read_after_write": [
+    {
+      "iteration": 1,
+      "cart_id": 52,
+      "create_ms": 61.37,
+      "read_ms": 120.57,
+      "found_immediately": true,
+      "read_status": 200
+    },
+    {
+      "iteration": 2,
+      "cart_id": 53,
+      "create_ms": 50.72,
+      "read_ms": 130.51,
+      "found_immediately": true,
+      "read_status": 200
+    },
+    {
+      "iteration": 3,
+      "cart_id": 54,
+      "create_ms": 52.22,
+      "read_ms": 232.47,
+      "found_immediately": true,
+      "read_status": 200
+    },
+    {
+      "iteration": 4,
+      "cart_id": 55,
+      "create_ms": 51.18,
+      "read_ms": 123.96,
+      "found_immediately": true,
+      "read_status": 200
+    },
+    {
+      "iteration": 5,
+      "cart_id": 56,
+      "create_ms": 48.48,
+      "read_ms": 134.68,
+      "found_immediately": true,
+      "read_status": 200
+    },
+    {
+      "iteration": 6,
+      "cart_id": 57,
+      "create_ms": 52.71,
+      "read_ms": 123.81,
+      "found_immediately": true,
+      "read_status": 200
+    },
+    {
+      "iteration": 7,
+      "cart_id": 58,
+      "create_ms": 51.45,
+      "read_ms": 124.65,
+      "found_immediately": true,
+      "read_status": 200
+    },
+    {
+      "iteration": 8,
+      "cart_id": 59,
+      "create_ms": 56.88,
+      "read_ms": 125.28,
+      "found_immediately": true,
+      "read_status": 200
+    },
+    {
+      "iteration": 9,
+      "cart_id": 60,
+      "create_ms": 50.62,
+      "read_ms": 142.11,
+      "found_immediately": true,
+      "read_status": 200
+    },
+    {
+      "iteration": 10,
+      "cart_id": 61,
+      "create_ms": 52.39,
+      "read_ms": 132.17,
+      "found_immediately": true,
+      "read_status": 200
+    },
+    {
+      "iteration": 11,
+      "cart_id": 62,
+      "create_ms": 61.29,
+      "read_ms": 134.92,
+      "found_immediately": true,
+      "read_status": 200
+    },
+    {
+      "iteration": 12,
+      "cart_id": 63,
+      "create_ms": 122.02,
+      "read_ms": 130.14,
+      "found_immediately": true,
+      "read_status": 200
+    },
+    {
+      "iteration": 13,
+      "cart_id": 64,
+      "create_ms": 63.55,
+      "read_ms": 146.02,
+      "found_immediately": true,
+      "read_status": 200
+    },
+    {
+      "iteration": 14,
+      "cart_id": 65,
+      "create_ms": 83.42,
+      "read_ms": 155.44,
+      "found_immediately": true,
+      "read_status": 200
+    },
+    {
+      "iteration": 15,
+      "cart_id": 66,
+      "create_ms": 84.55,
+      "read_ms": 135.19,
+      "found_immediately": true,
+      "read_status": 200
+    },
+    {
+      "iteration": 16,
+      "cart_id": 67,
+      "create_ms": 48.32,
+      "read_ms": 128.38,
+      "found_immediately": true,
+      "read_status": 200
+    },
+    {
+      "iteration": 17,
+      "cart_id": 68,
+      "create_ms": 52.27,
+      "read_ms": 132.52,
+      "found_immediately": true,
+      "read_status": 200
+    },
+    {
+      "iteration": 18,
+      "cart_id": 69,
+      "create_ms": 52.76,
+      "read_ms": 134.74,
+      "found_immediately": true,
+      "read_status": 200
+    },
+    {
+      "iteration": 19,
+      "cart_id": 70,
+      "create_ms": 54.86,
+      "read_ms": 136.36,
+      "found_immediately": true,
+      "read_status": 200
+    },
+    {
+      "iteration": 20,
+      "cart_id": 71,
+      "create_ms": 53.32,
+      "read_ms": 130.59,
+      "found_immediately": true,
+      "read_status": 200
+    }
+  ],
+  "test_2_add_then_read": [
+    {
+      "iteration": 1,
+      "product_id": 5000,
+      "add_ms": 143.06,
+      "read_ms": 127.2,
+      "item_visible": true,
+      "items_count": 1
+    },
+    {
+      "iteration": 2,
+      "product_id": 5001,
+      "add_ms": 50.83,
+      "read_ms": 40.74,
+      "item_visible": true,
+      "items_count": 2
+    },
+    {
+      "iteration": 3,
+      "product_id": 5002,
+      "add_ms": 55.95,
+      "read_ms": 45.46,
+      "item_visible": true,
+      "items_count": 3
+    },
+    {
+      "iteration": 4,
+      "product_id": 5003,
+      "add_ms": 51.37,
+      "read_ms": 42.23,
+      "item_visible": true,
+      "items_count": 4
+    },
+    {
+      "iteration": 5,
+      "product_id": 5004,
+      "add_ms": 51.35,
+      "read_ms": 52.39,
+      "item_visible": true,
+      "items_count": 5
+    },
+    {
+      "iteration": 6,
+      "product_id": 5005,
+      "add_ms": 55.45,
+      "read_ms": 43.9,
+      "item_visible": true,
+      "items_count": 6
+    },
+    {
+      "iteration": 7,
+      "product_id": 5006,
+      "add_ms": 47.78,
+      "read_ms": 42.25,
+      "item_visible": true,
+      "items_count": 7
+    },
+    {
+      "iteration": 8,
+      "product_id": 5007,
+      "add_ms": 51.53,
+      "read_ms": 46.4,
+      "item_visible": true,
+      "items_count": 8
+    },
+    {
+      "iteration": 9,
+      "product_id": 5008,
+      "add_ms": 45.41,
+      "read_ms": 51.45,
+      "item_visible": true,
+      "items_count": 9
+    },
+    {
+      "iteration": 10,
+      "product_id": 5009,
+      "add_ms": 49.57,
+      "read_ms": 45.0,
+      "item_visible": true,
+      "items_count": 10
+    },
+    {
+      "iteration": 11,
+      "product_id": 5010,
+      "add_ms": 46.69,
+      "read_ms": 51.71,
+      "item_visible": true,
+      "items_count": 11
+    },
+    {
+      "iteration": 12,
+      "product_id": 5011,
+      "add_ms": 50.47,
+      "read_ms": 46.2,
+      "item_visible": true,
+      "items_count": 12
+    },
+    {
+      "iteration": 13,
+      "product_id": 5012,
+      "add_ms": 48.95,
+      "read_ms": 49.96,
+      "item_visible": true,
+      "items_count": 13
+    },
+    {
+      "iteration": 14,
+      "product_id": 5013,
+      "add_ms": 51.82,
+      "read_ms": 47.78,
+      "item_visible": true,
+      "items_count": 14
+    },
+    {
+      "iteration": 15,
+      "product_id": 5014,
+      "add_ms": 52.53,
+      "read_ms": 47.06,
+      "item_visible": true,
+      "items_count": 15
+    },
+    {
+      "iteration": 16,
+      "product_id": 5015,
+      "add_ms": 47.83,
+      "read_ms": 49.38,
+      "item_visible": true,
+      "items_count": 16
+    },
+    {
+      "iteration": 17,
+      "product_id": 5016,
+      "add_ms": 57.92,
+      "read_ms": 46.92,
+      "item_visible": true,
+      "items_count": 17
+    },
+    {
+      "iteration": 18,
+      "product_id": 5017,
+      "add_ms": 57.89,
+      "read_ms": 46.3,
+      "item_visible": true,
+      "items_count": 18
+    },
+    {
+      "iteration": 19,
+      "product_id": 5018,
+      "add_ms": 50.63,
+      "read_ms": 46.79,
+      "item_visible": true,
+      "items_count": 19
+    },
+    {
+      "iteration": 20,
+      "product_id": 5019,
+      "add_ms": 47.83,
+      "read_ms": 42.24,
+      "item_visible": true,
+      "items_count": 20
+    }
+  ],
+  "test_3_rapid_updates": {
+    "cart_id": 73,
+    "expected_quantity": 10,
+    "actual_quantity": 10,
+    "updates_lost": 0,
+    "update_results": [
+      {
+        "iteration": 1,
+        "add_ms": 135.09,
+        "status": 204
+      },
+      {
+        "iteration": 2,
+        "add_ms": 59.01,
+        "status": 204
+      },
+      {
+        "iteration": 3,
+        "add_ms": 62.92,
+        "status": 204
+      },
+      {
+        "iteration": 4,
+        "add_ms": 46.01,
+        "status": 204
+      },
+      {
+        "iteration": 5,
+        "add_ms": 51.13,
+        "status": 204
+      },
+      {
+        "iteration": 6,
+        "add_ms": 50.59,
+        "status": 204
+      },
+      {
+        "iteration": 7,
+        "add_ms": 53.84,
+        "status": 204
+      },
+      {
+        "iteration": 8,
+        "add_ms": 46.99,
+        "status": 204
+      },
+      {
+        "iteration": 9,
+        "add_ms": 51.08,
+        "status": 204
+      },
+      {
+        "iteration": 10,
+        "add_ms": 50.68,
+        "status": 204
+      }
+    ]
+  },
+  "timestamp": "2026-03-22T15:16:07.343026+00:00"
+}

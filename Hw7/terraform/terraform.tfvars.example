@@ -1,0 +1,12 @@
+# terraform.tfvars.example
+# Copy to terraform.tfvars and fill in your values
+
+aws_region      = "us-east-1"
+project_name    = "async-orders"
+
+# Replace with your ECR image URIs after building and pushing
+receiver_image  = "123456789012.dkr.ecr.us-east-1.amazonaws.com/async-orders/receiver:latest"
+processor_image = "123456789012.dkr.ecr.us-east-1.amazonaws.com/async-orders/processor:latest"
+
+# Phase 3: start with 1, Phase 5: scale to 5, 20, 60, 100
+worker_count = 1
