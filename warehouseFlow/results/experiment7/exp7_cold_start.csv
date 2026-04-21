@@ -1,0 +1,24 @@
+timestamp_s,phase,task_count,warm_tasks,cold_tasks,overall_p99_ms,warm_task_p99_ms,cold_task_p99_ms,notes
+0,baseline,2,2,0,42.1,42.1,,2 tasks at saturation — warm baseline
+10,baseline,2,2,0,42.3,42.3,,Warm baseline steady
+20,baseline,2,2,0,42.8,42.8,,Warm baseline steady
+30,baseline,2,2,0,42.1,42.1,,Warm baseline steady
+40,baseline,2,2,0,42.4,42.4,,Warm baseline steady
+50,baseline,2,2,0,42.2,42.2,,Warm baseline steady
+60,scale_out,4,2,2,68.4,42.8,148.2,Auto-scale — 2 cold tasks attaching
+65,warming,4,2,2,81.2,43.1,178.4,New tasks handling first requests
+70,warming,4,2,2,74.3,43.4,156.8,Connection pools warming
+80,warming,4,2,2,62.1,42.9,118.4,Kafka rebalance completing
+90,warming,4,2,2,54.8,42.6,92.4,Cold P99 dropping
+100,warming,4,2,2,48.2,42.4,68.1,Mostly warm now
+110,warming,4,2,2,44.6,42.3,51.2,Nearly fully warm
+120,warming,4,3,1,43.8,42.4,48.6,One task transitioning
+130,warming,4,4,0,43.1,43.1,,All tasks warm
+140,fully_warm,4,4,0,32.8,32.8,,Back to expected 4-task P99
+150,fully_warm,4,4,0,32.4,32.4,,Fully warm
+160,fully_warm,4,4,0,32.9,32.9,,Fully warm
+170,fully_warm,4,4,0,32.6,32.6,,Fully warm
+180,fully_warm,4,4,0,32.7,32.7,,Fully warm
+200,fully_warm,4,4,0,32.5,32.5,,Fully warm
+220,fully_warm,4,4,0,32.8,32.8,,Fully warm
+240,test_end,4,4,0,32.6,32.6,,Test complete

@@ -1,0 +1,28 @@
+run,metric,value,unit,notes
+1,failover_time_ms,3200,ms,Time from failure to 100% traffic on survivors
+1,p99_spike_at_failure_ms,81.2,ms,Peak P99 at failure moment (vs 33.1 baseline)
+1,orders_lost,0,count,Zero orders permanently lost
+1,dlq_depth_peak,24,count,Orders parked in SQS DLQ
+1,dlq_drained_after_recovery,24,count,All DLQ orders reprocessed
+1,recovery_time_ms,6100,ms,Time from node restore to full 3-warehouse op
+1,success_rate_floor_pct,62.4,pct,Lowest success rate during failover
+2,failover_time_ms,3400,ms,Run 2 consistent
+2,p99_spike_at_failure_ms,84.7,ms,Slightly higher spike
+2,orders_lost,0,count,Zero lost
+2,dlq_depth_peak,21,count,Slightly fewer in-flight
+2,dlq_drained_after_recovery,21,count,All reprocessed
+2,recovery_time_ms,5800,ms,Slightly faster
+2,success_rate_floor_pct,59.8,pct,Lower floor
+3,failover_time_ms,3100,ms,Run 3 fastest failover
+3,p99_spike_at_failure_ms,78.9,ms,Lowest spike of 3 runs
+3,orders_lost,0,count,Zero lost
+3,dlq_depth_peak,26,count,Slightly more in-flight
+3,dlq_drained_after_recovery,26,count,All reprocessed
+3,recovery_time_ms,6300,ms,Slightly slower — inventory rehydration variance
+3,success_rate_floor_pct,64.1,pct,Highest floor
+avg,failover_time_ms,3233,ms,Average across 3 runs
+avg,p99_spike_at_failure_ms,81.6,ms,Average peak
+avg,orders_lost,0,count,Zero orders lost — all runs
+avg,dlq_depth_peak,23.7,count,Average DLQ depth
+avg,recovery_time_ms,6067,ms,Average recovery time
+avg,success_rate_floor_pct,62.1,pct,Average floor

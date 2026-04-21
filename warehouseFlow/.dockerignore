@@ -1,0 +1,27 @@
+# Exclude build artifacts and non-essential files from Docker build context
+.git
+.gitignore
+.dockerignore
+*.md
+docs/
+dashboard/
+load-tests/
+monitoring/
+results/
+scripts/
+terraform/
+CHANGELOG.md
+README.md
+
+# Go build cache
+*.test
+*.out
+vendor/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db

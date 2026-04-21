@@ -1,0 +1,6 @@
+# Copy this file to terraform.tfvars and fill in values.
+# DO NOT commit terraform.tfvars (already in .gitignore).
+
+region             = "us-east-1"
+db_password        = "change_me_to_something_strong"
+routing_task_count = 4

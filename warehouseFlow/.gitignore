@@ -1,0 +1,54 @@
+# Go
+*.exe
+*.test
+*.prof
+vendor/
+
+# Test binaries
+*.out
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Terraform
+terraform/.terraform/
+terraform/.terraform.lock.hcl
+terraform/*.tfstate
+terraform/*.tfstate.backup
+terraform/terraform.tfvars
+terraform/crash.log
+
+# Docker volumes
+docker-compose.override.yml
+
+# Logs
+*.log
+results/experiment*/*.log
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+venv/
+.venv/
+.python-version
+
+# Locust local output
+locust_output/
+
+# Generated output from experiments
+results/experiment*/*_locust_*.csv
+results/experiment*/*_run_*.log
+results/experiment*/exp*_consumer*.log
+
+# Environment files
+.env
+.env.local

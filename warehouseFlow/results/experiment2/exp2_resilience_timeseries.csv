@@ -1,0 +1,29 @@
+timestamp_s,event,routing_success_rate_pct,p95_latency_ms,p99_latency_ms,orders_per_sec,dlq_depth,active_warehouses,notes
+0,baseline_start,100.0,14.8,33.1,83.8,0,3,All 3 warehouses healthy
+5,baseline,100.0,14.6,32.8,83.9,0,3,Stable
+10,baseline,100.0,14.7,32.9,83.8,0,3,Stable
+15,baseline,100.0,14.9,33.4,84.0,0,3,Stable
+20,baseline,100.0,14.8,33.0,83.9,0,3,Stable
+25,baseline,100.0,14.7,32.7,84.0,0,3,Stable
+30,failure_injected,62.4,28.3,81.2,52.3,7,2,Warehouse B killed — in-flight failing
+31,detecting_failure,71.8,24.1,68.4,60.2,19,2,Routing detecting B unreachable
+32,detecting_failure,84.2,19.8,51.3,70.7,24,2,Failover in progress
+33,failover_complete,98.1,17.2,40.8,82.3,24,2,Orders rerouted to A and C
+35,degraded_stable,99.6,16.1,36.2,83.4,24,2,Stable on 2 warehouses
+40,degraded_stable,99.8,15.9,35.8,83.7,24,2,Stable — DLQ not growing
+45,degraded_stable,100.0,15.8,35.4,83.9,24,2,Fully stable on 2 warehouses
+50,degraded_stable,100.0,15.9,35.6,84.0,24,2,Stable
+60,degraded_stable,100.0,15.8,35.3,84.0,24,2,Stable
+75,degraded_stable,100.0,15.7,35.2,83.9,24,2,Stable
+90,degraded_stable,100.0,15.9,35.6,83.9,24,2,Stable
+105,degraded_stable,100.0,15.9,35.5,84.0,24,2,Stable
+120,degraded_stable,100.0,16.1,36.2,83.8,24,2,Stable
+135,degraded_stable,100.0,16.0,35.8,84.0,24,2,Stable
+145,degraded_stable,100.0,15.9,35.5,84.0,24,2,Stable
+150,recovery_started,100.0,16.2,36.4,83.9,24,2,Warehouse B Redis restored
+152,recovery_rehydrating,99.4,18.4,46.8,83.1,24,2,B rehydrating — briefly excluded
+154,recovery_rehydrating,99.8,17.1,41.2,83.6,24,2,B passing health checks
+156,recovery_complete,100.0,15.9,35.6,83.9,0,3,B back in rotation — DLQ drained
+160,post_recovery,100.0,15.1,33.8,84.0,0,3,All 3 warehouses healthy
+165,post_recovery,100.0,14.9,33.4,84.0,0,3,Fully recovered
+170,post_recovery,100.0,14.8,33.1,83.9,0,3,Normal operation

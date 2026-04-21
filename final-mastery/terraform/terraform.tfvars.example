@@ -1,0 +1,7 @@
+aws_region        = "us-west-2"
+project_name      = "final-mastery-album-store"
+image_tag         = "latest"
+task_cpu          = 512
+task_memory       = 1024
+max_workers       = 4
+processing_delay_ms = 0

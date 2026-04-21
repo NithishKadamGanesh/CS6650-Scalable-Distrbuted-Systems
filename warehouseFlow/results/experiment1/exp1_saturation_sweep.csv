@@ -1,0 +1,9 @@
+target_rps,actual_rps,p50_latency_ms,p95_latency_ms,p99_latency_ms,kafka_consumer_lag_max,notes
+16.67,16.68,9.1,12.4,30.1,0,1000 orders/min — comfortable
+33.33,33.30,9.4,13.1,32.0,0,2000 orders/min — comfortable
+50.00,50.00,9.8,13.8,32.0,0,3000 orders/min
+66.67,66.80,10.1,14.2,33.1,0,4000 orders/min
+83.33,84.00,10.3,14.7,33.8,0,5000 orders/min — at capacity
+100.00,97.40,11.8,28.4,71.2,412,6000 orders/min — lag building
+116.67,108.20,14.2,52.1,134.8,2108,7000 orders/min — saturating
+133.33,114.60,19.4,98.7,224.1,5891,8000 orders/min — SLA breached

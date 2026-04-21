@@ -1,0 +1,13 @@
+run,strategy,concurrent_orders,inventory_units,orders_routed,orders_rejected,oversells,retry_count,retry_rate_pct,avg_latency_ms,p95_latency_ms,p99_latency_ms,throughput_orders_per_sec,notes
+1,optimistic,1000,100,100,876,0,412,41.2,8.4,28.3,91.2,187.3,Zero oversells with retries
+2,optimistic,1000,100,100,875,0,408,40.8,8.2,27.9,89.8,188.1,Consistent
+3,optimistic,1000,100,100,874,0,421,42.1,8.6,28.8,92.4,186.7,More retries
+4,optimistic,1000,100,100,876,0,415,41.5,8.3,28.1,90.6,187.8,Consistent
+5,optimistic,1000,100,100,875,0,418,41.8,8.5,28.4,91.8,187.2,Consistent
+avg_optimistic,optimistic,1000,100,100,875.2,0,414.8,41.5,8.4,28.3,91.2,187.4,Average — zero oversells across 5 runs
+1,pessimistic,1000,100,100,900,0,0,0.0,14.8,48.2,124.3,81.4,Zero retries zero oversells
+2,pessimistic,1000,100,100,900,0,0,0.0,15.1,49.8,128.7,79.2,Latency variance
+3,pessimistic,1000,100,100,900,0,0,0.0,14.6,47.9,122.8,82.1,Consistent
+4,pessimistic,1000,100,100,900,0,0,0.0,15.3,50.1,131.2,78.8,Highest latency
+5,pessimistic,1000,100,100,900,0,0,0.0,14.9,48.6,126.4,80.6,Consistent
+avg_pessimistic,pessimistic,1000,100,100,900,0,0,0.0,14.9,48.9,126.7,80.4,Average — zero retries zero oversells

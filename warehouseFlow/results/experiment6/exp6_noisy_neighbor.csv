@@ -1,0 +1,28 @@
+timestamp_s,phase,alpha_orders_per_sec,alpha_p95_ms,alpha_p99_ms,hotitem_orders_per_sec,hotitem_p99_ms,elasticache_cpu_pct,notes
+0,baseline,47.2,14.1,31.8,0,0,18.2,SKU-ALPHA only — quiet baseline
+10,baseline,48.1,14.3,32.1,0,0,18.4,Baseline steady
+20,baseline,47.8,14.2,31.9,0,0,18.3,Baseline steady
+30,baseline,48.3,14.4,32.3,0,0,18.5,Baseline steady
+40,baseline,47.9,14.2,31.8,0,0,18.3,Baseline steady
+50,baseline,48.0,14.3,32.0,0,0,18.4,Baseline steady
+60,noisy_start,48.2,14.8,34.1,12.4,28.4,24.1,HOTITEM burst begins
+65,noisy,47.8,18.2,58.3,89.2,72.1,48.6,HOTITEM ramping — ALPHA P99 rising
+70,noisy,47.4,24.8,82.7,124.6,108.4,62.3,ALPHA P99 up 2.6x
+75,noisy,46.9,31.2,118.4,142.8,134.2,71.8,ALPHA degraded despite unchanged rate
+80,noisy,47.1,33.4,127.8,148.4,142.6,73.2,ALPHA P99 peak — noisy neighbor impact
+85,noisy,46.8,32.8,124.6,149.2,140.8,72.8,Steady noisy state
+90,noisy,47.0,32.1,121.4,147.8,138.4,72.1,Steady noisy state
+95,noisy,46.9,33.0,125.8,148.6,141.2,72.6,Steady noisy state
+100,noisy,47.2,32.4,122.6,148.9,139.8,72.3,Steady noisy state
+105,noisy,46.8,33.2,126.4,149.4,142.1,72.9,Steady noisy state
+110,noisy,47.1,32.6,123.2,148.2,140.4,72.4,Steady noisy state
+115,noisy,46.9,32.9,124.8,147.6,141.0,72.1,Steady noisy state
+120,noisy_end,47.2,28.4,104.2,98.4,98.2,58.4,HOTITEM burst ending
+125,recovery,47.8,20.1,61.2,42.8,46.8,38.4,Recovering
+130,recovery,48.1,16.4,42.3,14.2,24.1,26.8,Recovering
+135,recovery,48.0,14.8,34.6,0,0,19.4,Back to baseline
+140,recovery,48.2,14.3,32.4,0,0,18.6,Baseline restored
+150,recovery,48.0,14.2,31.9,0,0,18.3,Baseline
+160,recovery,47.9,14.3,32.1,0,0,18.4,Baseline
+170,recovery,48.1,14.2,31.8,0,0,18.3,Baseline
+180,test_end,48.0,14.3,32.0,0,0,18.4,Test complete

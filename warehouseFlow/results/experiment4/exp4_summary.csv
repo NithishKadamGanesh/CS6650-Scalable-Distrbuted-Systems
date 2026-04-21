@@ -1,0 +1,10 @@
+metric,value,unit,notes
+partition_duration_s,120,seconds,Wall-clock time B was isolated
+orders_routed_during_partition,36960,count,All to A or C — no orders lost
+drift_at_heal,724,count,Orders A+C served that B would have handled
+reconciliation_time_s,20,seconds,Time from heal to drift=0
+orders_lost_permanently,0,count,Zero lost — zero-downtime partition tolerance
+success_rate_during_partition_pct,99.7,pct,Brief dip at injection moment only
+avg_latency_during_partition_ms,18.2,ms,Slightly higher than 3-warehouse baseline (15ms)
+avg_latency_post_heal_ms,15.4,ms,Back to normal after reconciliation
+cap_property,AP_over_CP,category,System chose Availability + Partition Tolerance

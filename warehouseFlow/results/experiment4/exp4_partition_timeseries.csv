@@ -1,0 +1,25 @@
+timestamp_s,event,orders_routed_to_a,orders_routed_to_b,orders_routed_to_c,inventory_a,inventory_b_isolated,inventory_c,drift_detected,notes
+0,baseline,1002,1001,997,2400,2400,2400,0,All 3 warehouses reachable
+10,baseline,1024,1015,1018,2376,2385,2382,0,Normal operation
+20,baseline,1008,998,1003,2352,2370,2365,0,Normal operation
+30,partition_injected,0,0,0,2352,2370,2365,0,Warehouse B disconnected
+40,partitioned_op,1521,0,1498,2235,2370,2250,0,Routing sees only A and C
+50,partitioned_op,1538,0,1511,2118,2370,2135,0,All traffic on A+C
+60,partitioned_op,1528,0,1523,2001,2370,2020,0,Steady partitioned
+70,partitioned_op,1542,0,1517,1884,2370,1905,0,Steady partitioned
+80,partitioned_op,1531,0,1512,1767,2370,1790,0,Steady partitioned
+90,partitioned_op,1525,0,1521,1650,2370,1675,0,Steady partitioned
+100,partitioned_op,1540,0,1518,1533,2370,1560,0,Steady partitioned
+110,partitioned_op,1536,0,1514,1416,2370,1445,0,Steady partitioned
+120,partitioned_op,1528,0,1520,1299,2370,1330,0,Steady partitioned
+130,partitioned_op,1532,0,1516,1182,2370,1215,0,Steady partitioned
+140,partitioned_op,1528,0,1517,1065,2370,1100,0,Steady partitioned
+150,partition_healed,1532,12,1521,948,2358,985,724,B rejoins — drift=724
+155,reconciling,1412,198,1498,890,2293,935,626,B processing backlog
+160,reconciling,1398,421,1482,832,2134,890,405,Reconciliation progressing
+165,reconciling,1402,612,1478,775,1972,845,193,Reconciliation progressing
+170,reconciling,1415,814,1488,718,1816,800,0,Reconciliation complete
+180,post_heal,1523,1498,1512,642,1666,726,0,All 3 active — load rebalanced
+200,post_heal,1530,1514,1518,549,1516,651,0,Normal operation
+220,post_heal,1528,1516,1520,456,1366,576,0,Normal operation
+240,test_end,1525,1512,1517,363,1216,501,0,Test complete

@@ -1,0 +1,18 @@
+partitions,consumers,active_consumers,idle_consumers,throughput_orders_per_sec,p95_latency_ms,p99_latency_ms,consumer_lag_max,notes
+1,1,1,0,24.3,42.1,118.2,0,Single partition baseline
+1,2,1,1,24.1,42.8,119.6,0,2nd consumer idle — no gain
+1,4,1,3,24.0,43.2,120.1,0,3 idle consumers — wasted
+1,8,1,7,23.9,43.8,121.4,0,7 idle consumers
+3,1,1,0,24.1,42.3,118.9,1821,One handling 3 partitions — lag builds
+3,2,2,0,48.6,23.1,62.4,0,Two consumers share 3 partitions
+3,3,3,0,72.2,14.8,33.1,0,Perfect 1:1 ratio
+3,4,3,1,72.0,14.9,33.4,0,4th idle — 3 is the limit
+3,8,3,5,71.8,15.1,33.8,0,5 idle consumers
+6,1,1,0,24.2,42.0,118.5,4128,1:6 ratio — severe lag
+6,3,3,0,72.4,14.6,32.9,0,Balanced
+6,6,6,0,142.8,7.8,18.2,0,Perfect 1:1 — 2x throughput
+6,8,6,2,142.6,7.9,18.4,0,2 idle
+6,12,6,6,142.1,8.1,18.8,0,Half idle
+12,6,6,0,142.5,7.9,18.3,1208,Still lag — partitions allow more
+12,12,12,0,281.4,3.9,9.1,0,Perfect 1:1 — 4x throughput
+12,8,8,0,189.2,5.8,13.6,0,Under-provisioned

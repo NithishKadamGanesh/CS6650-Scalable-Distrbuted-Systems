@@ -1,0 +1,9 @@
+run,task_count,target_rps,actual_rps,p50_latency_ms,p95_latency_ms,p99_latency_ms,cpu_pct_per_task,memory_mb,kafka_lag_max,notes
+1,1,83.3,71.2,45.2,52.1,118.3,91.4,340,1840,CPU saturated
+2,1,83.3,70.8,46.1,53.2,121.4,92.8,342,1920,Consistent with run 1
+1,2,83.3,83.1,20.4,28.3,61.4,48.2,310,220,Near capacity
+2,2,83.3,82.8,21.1,29.1,63.2,49.1,312,243,Consistent
+1,4,83.3,84.0,10.2,14.7,32.8,24.1,280,0,Meets target
+2,4,83.3,83.9,10.5,14.8,33.1,24.4,281,0,Consistent
+1,8,83.3,84.0,10.8,16.2,36.1,12.8,270,0,ElastiCache pressure visible
+2,8,83.3,84.0,11.1,16.3,36.4,12.9,272,0,Consistent

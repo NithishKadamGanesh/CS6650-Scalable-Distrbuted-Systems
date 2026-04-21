@@ -1,0 +1,78 @@
+{
+  "title": "WarehouseFlow — Distributed Routing Dashboard",
+  "uid": "warehouseflow-main",
+  "version": 1,
+  "refresh": "5s",
+  "panels": [
+    {
+      "id": 1,
+      "title": "Orders Routed per Second",
+      "type": "graph",
+      "gridPos": { "x": 0, "y": 0, "w": 12, "h": 8 },
+      "targets": [
+        { "expr": "rate(warehouseflow_orders_routed_total[30s])", "legendFormat": "routed/sec" },
+        { "expr": "rate(warehouseflow_orders_rejected_total[30s])", "legendFormat": "rejected/sec" }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Routing Latency (P50 / P95 / P99)",
+      "type": "graph",
+      "gridPos": { "x": 12, "y": 0, "w": 12, "h": 8 },
+      "targets": [
+        { "expr": "histogram_quantile(0.50, rate(warehouseflow_routing_latency_seconds_bucket[30s])) * 1000", "legendFormat": "P50 (ms)" },
+        { "expr": "histogram_quantile(0.95, rate(warehouseflow_routing_latency_seconds_bucket[30s])) * 1000", "legendFormat": "P95 (ms)" },
+        { "expr": "histogram_quantile(0.99, rate(warehouseflow_routing_latency_seconds_bucket[30s])) * 1000", "legendFormat": "P99 (ms)" }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Orders Routed per Warehouse",
+      "type": "graph",
+      "gridPos": { "x": 0, "y": 8, "w": 8, "h": 8 },
+      "targets": [
+        { "expr": "rate(warehouseflow_warehouse_routed_orders_total{warehouse_id=\"warehouse-a\"}[30s])", "legendFormat": "A" },
+        { "expr": "rate(warehouseflow_warehouse_routed_orders_total{warehouse_id=\"warehouse-b\"}[30s])", "legendFormat": "B" },
+        { "expr": "rate(warehouseflow_warehouse_routed_orders_total{warehouse_id=\"warehouse-c\"}[30s])", "legendFormat": "C" }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Circuit Breaker State",
+      "type": "graph",
+      "gridPos": { "x": 8, "y": 8, "w": 8, "h": 8 },
+      "targets": [
+        { "expr": "warehouseflow_cb_state", "legendFormat": "{{warehouse_id}}" }
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Bulkhead In-Flight",
+      "type": "graph",
+      "gridPos": { "x": 16, "y": 8, "w": 8, "h": 8 },
+      "targets": [
+        { "expr": "warehouseflow_bulkhead_inflight", "legendFormat": "{{warehouse_id}}" }
+      ]
+    },
+    {
+      "id": 6,
+      "title": "Optimistic CAS Conflicts / Pessimistic Lock Contention",
+      "type": "graph",
+      "gridPos": { "x": 0, "y": 16, "w": 12, "h": 8 },
+      "targets": [
+        { "expr": "rate(warehouseflow_optimistic_retries_total[30s])", "legendFormat": "CAS retries" },
+        { "expr": "rate(warehouseflow_pessimistic_lock_contended_total[30s])", "legendFormat": "lock contention" }
+      ]
+    },
+    {
+      "id": 7,
+      "title": "DLQ + Degraded Writes",
+      "type": "graph",
+      "gridPos": { "x": 12, "y": 16, "w": 12, "h": 8 },
+      "targets": [
+        { "expr": "warehouseflow_dlq_sends_total", "legendFormat": "DLQ total" },
+        { "expr": "warehouseflow_degraded_buffer_size", "legendFormat": "Degradation buffer" }
+      ]
+    }
+  ]
+}

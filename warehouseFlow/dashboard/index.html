@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>WarehouseFlow · Operations Control</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="header">
+  <div class="brand">
+    <div class="brand-mark">WF</div>
+    <div class="brand-text">
+      WarehouseFlow
+      <span class="subtitle">Operations Control · CS 6650</span>
+    </div>
+  </div>
+
+  <div class="header-status">
+    <div class="status-pill">
+      <div class="pulse-dot" id="sys-health-dot"></div>
+      <span id="sys-health-text">SYSTEM NOMINAL</span>
+    </div>
+    <div class="status-pill">
+      <span class="label">MODE</span>
+      <span class="value" id="sys-mode">LIVE</span>
+    </div>
+    <div class="status-pill clock" id="sys-clock">00:00:00 UTC</div>
+  </div>
+</header>
+
+<div class="grid">
+
+  <aside class="panel controls">
+    <section class="control-group">
+      <h3 class="panel-title"><span>Load Generator</span><span class="seq">01</span></h3>
+      <div class="control-label">Target Rate (orders/min)</div>
+      <div class="control-row">
+        <input type="range" id="rate-slider" class="slider" min="60" max="10000" step="60" value="3000">
+        <span class="slider-value" id="rate-value">3,000</span>
+      </div>
+      <div class="control-label" style="margin-top:12px">Traffic Pattern</div>
+      <div class="strategy-group">
+        <button class="strategy-btn active" data-pattern="steady">STEADY</button>
+        <button class="strategy-btn" data-pattern="burst">BURST</button>
+      </div>
+      <button class="btn btn-primary" id="traffic-toggle" style="margin-top:10px">START LOAD</button>
+    </section>
+
+    <section class="control-group">
+      <h3 class="panel-title"><span>Failure Injection</span><span class="seq">02</span></h3>
+      <button class="btn btn-danger" data-inject="warehouse-a">CRASH WAREHOUSE A</button>
+      <button class="btn btn-danger" data-inject="warehouse-b">CRASH WAREHOUSE B</button>
+      <button class="btn btn-danger" data-inject="warehouse-c">CRASH WAREHOUSE C</button>
+      <button class="btn btn-warn" data-inject="slow-b">SLOW WAREHOUSE B</button>
+      <button class="btn btn-warn" data-inject="partition">NETWORK PARTITION</button>
+      <button class="btn" id="recover-all" style="margin-top:4px">RECOVER ALL</button>
+    </section>
+
+    <section class="control-group">
+      <h3 class="panel-title"><span>Concurrency Strategy</span><span class="seq">03</span></h3>
+      <div class="strategy-group">
+        <button class="strategy-btn active" data-strategy="optimistic">OPTIMISTIC</button>
+        <button class="strategy-btn" data-strategy="pessimistic">PESSIMISTIC</button>
+      </div>
+      <div class="strategy-hint" id="strategy-hint">
+        CAS retry · higher throughput · retries under contention
+      </div>
+    </section>
+
+    <section class="control-group">
+      <h3 class="panel-title"><span>Resilience Patterns</span><span class="seq">04</span></h3>
+      <div class="toggle-row">
+        <label class="toggle"><input type="checkbox" id="toggle-cb" checked><span class="toggle-label">Circuit Breaker</span></label>
+        <label class="toggle"><input type="checkbox" id="toggle-bulkhead" checked><span class="toggle-label">Bulkhead</span></label>
+        <label class="toggle"><input type="checkbox" id="toggle-retry" checked><span class="toggle-label">Retry + Jitter</span></label>
+        <label class="toggle"><input type="checkbox" id="toggle-failfast" checked><span class="toggle-label">Fail-Fast (200ms)</span></label>
+      </div>
+    </section>
+
+    <section class="control-group">
+      <h3 class="panel-title"><span>Experiments</span><span class="seq">05</span></h3>
+      <button class="btn" data-experiment="1">EXP 1 · SCALING</button>
+      <button class="btn" data-experiment="2">EXP 2 · RESILIENCE</button>
+      <button class="btn" data-experiment="3">EXP 3 · CONTENTION</button>
+      <button class="btn" data-experiment="4">EXP 4 · PARTITION</button>
+      <button class="btn" data-experiment="5">EXP 5 · KAFKA PARTS</button>
+      <button class="btn" data-experiment="6">EXP 6 · NOISY NBR</button>
+      <button class="btn" data-experiment="7">EXP 7 · COLD START</button>
+    </section>
+  </aside>
+
+  <section class="kpis">
+    <div class="kpi"><span class="kpi-label">Throughput</span><span class="kpi-value" id="kpi-throughput">0</span><span class="kpi-unit">orders/sec</span></div>
+    <div class="kpi"><span class="kpi-label">P95 Latency</span><span class="kpi-value" id="kpi-p95">—</span><span class="kpi-unit">ms</span></div>
+    <div class="kpi"><span class="kpi-label">P99 Latency</span><span class="kpi-value" id="kpi-p99">—</span><span class="kpi-unit">ms</span></div>
+    <div class="kpi"><span class="kpi-label">Success Rate</span><span class="kpi-value" id="kpi-success">100.0</span><span class="kpi-unit">% routed</span></div>
+    <div class="kpi"><span class="kpi-label">DLQ Depth</span><span class="kpi-value" id="kpi-dlq">0</span><span class="kpi-unit">parked</span></div>
+    <div class="kpi"><span class="kpi-label">Oversells</span><span class="kpi-value ok" id="kpi-oversells">0</span><span class="kpi-unit">correctness</span></div>
+  </section>
+
+  <section class="panel floor">
+    <h3 class="panel-title">
+      <span>Warehouse Network · Live Routing</span>
+      <span class="seq" id="floor-subtitle">3 nodes · 60 pickers · region-aware</span>
+    </h3>
+    <svg id="warehouse-map" viewBox="0 0 900 420" preserveAspectRatio="xMidYMid meet">
+      <defs>
+        <pattern id="floor-grid" width="30" height="30" patternUnits="userSpaceOnUse">
+          <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#1a2230" stroke-width="0.5"/>
+        </pattern>
+      </defs>
+      <rect width="900" height="420" fill="url(#floor-grid)"/>
+
+      <g id="node-ingestion" transform="translate(80, 210)">
+        <circle r="22" fill="#1a2230" stroke="#38bdf8" stroke-width="2"/>
+        <text text-anchor="middle" dy="4" fill="#38bdf8" font-family="monospace" font-size="9">INGEST</text>
+        <text text-anchor="middle" y="42" fill="#64748b" font-family="monospace" font-size="9">ALB · KAFKA</text>
+      </g>
+
+      <g id="node-router" transform="translate(260, 210)">
+        <rect x="-36" y="-22" width="72" height="44" rx="4" fill="#1a2230" stroke="#a78bfa" stroke-width="2"/>
+        <text text-anchor="middle" dy="-2" fill="#a78bfa" font-family="monospace" font-size="10">ROUTER</text>
+        <text text-anchor="middle" dy="12" fill="#64748b" font-family="monospace" font-size="8" id="router-task-count">4 TASKS</text>
+      </g>
+
+      <g id="warehouse-a" class="warehouse" transform="translate(700, 100)" data-warehouse="a">
+        <rect x="-80" y="-40" width="160" height="80" rx="4" class="wh-box"/>
+        <text x="0" y="-20" text-anchor="middle" class="wh-label">WAREHOUSE A</text>
+        <text x="0" y="-6" text-anchor="middle" class="wh-region">US-EAST</text>
+        <g class="wh-stats" transform="translate(0,12)">
+          <text x="-60" text-anchor="start" class="wh-stat-label">INV</text>
+          <text x="60" text-anchor="end" class="wh-stat-value" id="inv-a">2,400</text>
+        </g>
+        <g class="wh-stats" transform="translate(0,26)">
+          <text x="-60" text-anchor="start" class="wh-stat-label">PICK</text>
+          <text x="60" text-anchor="end" class="wh-stat-value" id="pick-a">18/20</text>
+        </g>
+        <circle class="wh-indicator" cx="70" cy="-30" r="4"/>
+      </g>
+
+      <g id="warehouse-b" class="warehouse" transform="translate(700, 210)" data-warehouse="b">
+        <rect x="-80" y="-40" width="160" height="80" rx="4" class="wh-box"/>
+        <text x="0" y="-20" text-anchor="middle" class="wh-label">WAREHOUSE B</text>
+        <text x="0" y="-6" text-anchor="middle" class="wh-region">US-CENTRAL</text>
+        <g class="wh-stats" transform="translate(0,12)">
+          <text x="-60" text-anchor="start" class="wh-stat-label">INV</text>
+          <text x="60" text-anchor="end" class="wh-stat-value" id="inv-b">2,400</text>
+        </g>
+        <g class="wh-stats" transform="translate(0,26)">
+          <text x="-60" text-anchor="start" class="wh-stat-label">PICK</text>
+          <text x="60" text-anchor="end" class="wh-stat-value" id="pick-b">19/20</text>
+        </g>
+        <circle class="wh-indicator" cx="70" cy="-30" r="4"/>
+      </g>
+
+      <g id="warehouse-c" class="warehouse" transform="translate(700, 320)" data-warehouse="c">
+        <rect x="-80" y="-40" width="160" height="80" rx="4" class="wh-box"/>
+        <text x="0" y="-20" text-anchor="middle" class="wh-label">WAREHOUSE C</text>
+        <text x="0" y="-6" text-anchor="middle" class="wh-region">US-WEST</text>
+        <g class="wh-stats" transform="translate(0,12)">
+          <text x="-60" text-anchor="start" class="wh-stat-label">INV</text>
+          <text x="60" text-anchor="end" class="wh-stat-value" id="inv-c">2,400</text>
+        </g>
+        <g class="wh-stats" transform="translate(0,26)">
+          <text x="-60" text-anchor="start" class="wh-stat-label">PICK</text>
+          <text x="60" text-anchor="end" class="wh-stat-value" id="pick-c">20/20</text>
+        </g>
+        <circle class="wh-indicator" cx="70" cy="-30" r="4"/>
+      </g>
+
+      <path d="M 102 210 L 224 210" stroke="#2a3a4f" stroke-width="1" stroke-dasharray="3,3" fill="none"/>
+      <path d="M 296 210 Q 500 150 620 100" stroke="#2a3a4f" stroke-width="1" stroke-dasharray="3,3" fill="none" class="route-path" id="path-a"/>
+      <path d="M 296 210 L 620 210" stroke="#2a3a4f" stroke-width="1" stroke-dasharray="3,3" fill="none" class="route-path" id="path-b"/>
+      <path d="M 296 210 Q 500 260 620 320" stroke="#2a3a4f" stroke-width="1" stroke-dasharray="3,3" fill="none" class="route-path" id="path-c"/>
+
+      <g id="routing-particles"></g>
+
+      <g transform="translate(500, 70)" class="cb-badge" id="cb-a">
+        <rect x="-30" y="-10" width="60" height="20" rx="2" fill="#0a0e14" stroke="#4ade80"/>
+        <text text-anchor="middle" dy="4" fill="#4ade80" font-family="monospace" font-size="9">CB: CLOSED</text>
+      </g>
+      <g transform="translate(500, 190)" class="cb-badge" id="cb-b">
+        <rect x="-30" y="-10" width="60" height="20" rx="2" fill="#0a0e14" stroke="#4ade80"/>
+        <text text-anchor="middle" dy="4" fill="#4ade80" font-family="monospace" font-size="9">CB: CLOSED</text>
+      </g>
+      <g transform="translate(500, 360)" class="cb-badge" id="cb-c">
+        <rect x="-30" y="-10" width="60" height="20" rx="2" fill="#0a0e14" stroke="#4ade80"/>
+        <text text-anchor="middle" dy="4" fill="#4ade80" font-family="monospace" font-size="9">CB: CLOSED</text>
+      </g>
+    </svg>
+  </section>
+
+  <aside class="panel feed">
+    <h3 class="panel-title">
+      <span>Live Order Feed</span>
+      <span class="seq" id="feed-count">0 routed</span>
+    </h3>
+    <div id="order-feed" class="feed-list"></div>
+  </aside>
+
+  <section class="panel charts">
+    <div class="chart-row">
+      <div class="chart-block">
+        <div class="chart-head">
+          <span class="chart-title">Throughput</span>
+          <span class="chart-sub">orders/sec · last 60s</span>
+        </div>
+        <canvas id="chart-throughput" width="540" height="120"></canvas>
+      </div>
+      <div class="chart-block">
+        <div class="chart-head">
+          <span class="chart-title">Latency P50 / P95 / P99</span>
+          <span class="chart-sub">ms · last 60s</span>
+        </div>
+        <canvas id="chart-latency" width="540" height="120"></canvas>
+      </div>
+    </div>
+    <div class="chart-row">
+      <div class="chart-block">
+        <div class="chart-head">
+          <span class="chart-title">Per-Warehouse Orders</span>
+          <span class="chart-sub">stacked · last 60s</span>
+        </div>
+        <canvas id="chart-warehouse" width="540" height="120"></canvas>
+      </div>
+      <div class="chart-block">
+        <div class="chart-head">
+          <span class="chart-title">DLQ · Kafka Lag · Retries</span>
+          <span class="chart-sub">counters · last 60s</span>
+        </div>
+        <canvas id="chart-counters" width="540" height="120"></canvas>
+      </div>
+    </div>
+  </section>
+</div>
+
+<footer class="ticker">
+  <div class="ticker-inner" id="event-ticker">
+    <span class="ticker-item">SYSTEM INITIALIZED</span>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

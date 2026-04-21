@@ -184,7 +184,3 @@ Each worker randomly decides read vs. write based on the configured ratio, picks
 - **Concurrent writes:** The leader's version assignment is protected by a mutex. In leaderless mode, an atomic counter ensures unique versions per node.
 
 ---
-
-## AI Disclosure
-
-Portions of this code were developed with AI assistance (Claude). All code is understood and can be explained in detail.
